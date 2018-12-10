@@ -12,6 +12,6 @@ namespace NFine.Repository
 {
     public class myPersonRepository: RepositoryBase<myPersonEntity>, ImyPersonRepository
     {
-       
+        
     }
 }
