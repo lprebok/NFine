@@ -37,6 +37,5 @@ namespace NFine.Data
             }
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

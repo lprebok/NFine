@@ -49,5 +49,12 @@ namespace NFine.Application.SystemManage
                 service.Insert(organizeEntity);
             }
         }
+
+
+
+
+
+
+
     }
 }

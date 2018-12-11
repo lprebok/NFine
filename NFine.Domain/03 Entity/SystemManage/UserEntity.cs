@@ -5,7 +5,6 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NFine.Domain.Entity.SystemManage
 {
@@ -19,7 +18,6 @@ namespace NFine.Domain.Entity.SystemManage
         public bool? F_Gender { get; set; }
         public DateTime? F_Birthday { get; set; }
         public string F_MobilePhone { get; set; }
-        //[Column("FIRST_NAME")]
         public string F_Email { get; set; }
         public string F_WeChat { get; set; }
         public string F_ManagerId { get; set; }
