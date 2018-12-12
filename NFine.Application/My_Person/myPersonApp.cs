@@ -15,7 +15,8 @@ namespace NFine.Application.My_Person
 
         public int AddLog(Domain._03_Entity.MY_Person.myPersonEntity model)
         {
-            service.Insert(model);
+            service.Insert(model); 
+            
             return 1;
         }
 
