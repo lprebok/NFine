@@ -121,6 +121,8 @@
     <Compile Include="Areas\ExampleManage\ExampleManageAreaRegistration.cs" />
     <Compile Include="Areas\MyPerson\Controllers\MyPersonController.cs" />
     <Compile Include="Areas\MyPerson\MyPersonAreaRegistration.cs" />
+    <Compile Include="Areas\My_ProjManage\Controllers\ProjInfoController.cs" />
+    <Compile Include="Areas\My_ProjManage\My_ProjManageAreaRegistration.cs" />
     <Compile Include="Areas\ReportManage\Controllers\EchartsController.cs" />
     <Compile Include="Areas\ReportManage\Controllers\HighchartsController.cs" />
     <Compile Include="Areas\ReportManage\ReportManageAreaRegistration.cs" />
@@ -562,6 +564,9 @@
   <ItemGroup>
     <Folder Include="Areas\MyPerson\Models\" />
     <Folder Include="Areas\MyPerson\Views\Shared\" />
+    <Folder Include="Areas\My_ProjManage\Models\" />
+    <Folder Include="Areas\My_ProjManage\Views\ProjInfo\" />
+    <Folder Include="Areas\My_ProjManage\Views\Shared\" />
     <Folder Include="Areas\ReportManage\Views\Echarts\" />
   </ItemGroup>
   <ItemGroup>
@@ -619,6 +624,7 @@
     <Content Include="Areas\MyPerson\Views\web.config" />
     <Content Include="Areas\MyPerson\Views\MyPerson\Index.cshtml" />
     <Content Include="Areas\MyPerson\Views\MyPerson\Test.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\web.config" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>

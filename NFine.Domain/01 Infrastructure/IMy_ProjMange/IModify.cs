@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
+{
+    public interface IModify
+    {
+        string FWritePeople { get; set; }
+        DateTime? FWriteDate { get; set; }
+    }
+}
