@@ -14,10 +14,10 @@ namespace NFine.Repository.My_ProjManage
         public string InsertLog(MY_ProjInfo myEntity)
         {
             string strInfo = "";
-            //myEntity.Create();
+            myEntity.Create();
             try
             {
-                strInfo = new RepositoryBase().Insert(myEntity)==1?"保存成功！":"保存失败！";
+                strInfo = new RepositoryBase().Insert(myEntity) == 1 ? "保存成功！" : "保存失败！";
             }
             catch (Exception err)
             {

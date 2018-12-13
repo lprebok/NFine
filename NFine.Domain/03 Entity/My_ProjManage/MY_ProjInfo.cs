@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NFine.Domain._03_Entity.My_ProjManage
 {
-    public class MY_ProjInfo: IMyEntity<MY_ProjInfo>
+    public class MY_ProjInfo: IMyEntity<MY_ProjInfo>,ICreate,IModify,IDelete
     {
         public int FID { get; set; }
         public string FProCode { get; set; }
@@ -18,12 +18,12 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         public string Fmaster { get; set; }
 
         public string FWritePeople { get; set; }
-        public DateTime FWriteDate { get; set; }
+        public DateTime? FWriteDate { get; set; }
         public int FCheckFlag { get; set; }
         public string FCheckPeople { get; set; }
-        public DateTime FCheckDate { get; set; }
+        public DateTime? FCheckDate { get; set; }
         public int FCancelFlag { get; set; }
         public string FCancelPeople { get; set; }
-        public DateTime FCancelDate { get; set; }
+        public DateTime? FCancelDate { get; set; }
     }
 }

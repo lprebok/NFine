@@ -13,12 +13,20 @@ namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
         {
             var entity = this as ICreate;
             entity.FWriteDate = DateTime.Now;
+            entity.FCancelDate = DateTime.Now;
+            entity.FCheckDate = DateTime.Now;
+            entity.FCheckFlag = 0;
+            entity.FCancelFlag = 0;
             //var LoginInfo = OperatorProvider.Provider.GetCurrent();
             //if (LoginInfo != null)
             //{
             //    entity.FWritePeople = LoginInfo.UserId;
+            //    entity.FCheckPeople = LoginInfo.UserId;
+            //    entity.FCancelPeople = LoginInfo.UserId;
             //}
             entity.FWritePeople = "Admin";
+            entity.FCheckPeople = "Admin";
+            entity.FCancelPeople = "Admin";
         }
 
         public void Modify(string keyValue)

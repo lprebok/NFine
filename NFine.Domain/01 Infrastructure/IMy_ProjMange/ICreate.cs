@@ -10,5 +10,11 @@ namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
     {
         string FWritePeople { get; set; }
         DateTime? FWriteDate { get; set; }
+        int FCheckFlag { get; set; }
+        string FCheckPeople { get; set; }
+        DateTime? FCheckDate { get; set; }
+        int FCancelFlag { get; set; }
+        string FCancelPeople { get; set; }
+        DateTime? FCancelDate { get; set; }
     }
 }

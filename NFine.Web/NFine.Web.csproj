@@ -565,7 +565,6 @@
     <Folder Include="Areas\MyPerson\Models\" />
     <Folder Include="Areas\MyPerson\Views\Shared\" />
     <Folder Include="Areas\My_ProjManage\Models\" />
-    <Folder Include="Areas\My_ProjManage\Views\ProjInfo\" />
     <Folder Include="Areas\My_ProjManage\Views\Shared\" />
     <Folder Include="Areas\ReportManage\Views\Echarts\" />
   </ItemGroup>
@@ -625,6 +624,7 @@
     <Content Include="Areas\MyPerson\Views\MyPerson\Index.cshtml" />
     <Content Include="Areas\MyPerson\Views\MyPerson\Test.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\web.config" />
+    <Content Include="Areas\My_ProjManage\Views\ProjInfo\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>
