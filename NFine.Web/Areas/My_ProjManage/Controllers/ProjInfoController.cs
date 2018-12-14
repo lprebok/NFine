@@ -26,6 +26,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         public ActionResult GetGridJson(string keyword)
         {
             var data = projApp.GetList(keyword);
+            //string str = data.ToJson();
             return Content(data.ToJson());
         }
 
