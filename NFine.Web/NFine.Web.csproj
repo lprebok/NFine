@@ -625,6 +625,7 @@
     <Content Include="Areas\MyPerson\Views\MyPerson\Test.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\web.config" />
     <Content Include="Areas\My_ProjManage\Views\ProjInfo\Index.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\ProjInfo\Form.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>

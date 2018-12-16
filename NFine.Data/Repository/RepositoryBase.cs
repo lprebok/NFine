@@ -90,6 +90,7 @@ namespace NFine.Data
                 {
                     if (prop.GetValue(entity, null).ToString() == "&nbsp;")
                         dbcontext.Entry(entity).Property(prop.Name).CurrentValue = null;
+                    var vTest = prop.GetValue(entity, null);
                     dbcontext.Entry(entity).Property(prop.Name).IsModified = true;
                 }
             }

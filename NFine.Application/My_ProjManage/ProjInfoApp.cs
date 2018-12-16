@@ -8,6 +8,7 @@ using NFine.Repository.My_ProjManage;
 using System.Threading.Tasks;
 using NFine.Application.SystemManage;
 using NFine.Code;
+using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Application.My_ProjManage
 {
@@ -34,6 +35,23 @@ namespace NFine.Application.My_ProjManage
             return strInfo;
         }
 
+        public MY_ProjInfo GetEntity(string strKeyValue)
+        {
+            return myService.FindEntity(strKeyValue);
+        }
+
+        public void SubmitForm(MY_ProjInfo userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        {
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                userEntity.Modify(keyValue);
+            }
+            else
+            {
+                userEntity.Create();
+            }
+            myService.SubmitForm(userEntity, userLogOnEntity, keyValue);
+        }
 
     }
 }

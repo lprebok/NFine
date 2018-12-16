@@ -9,7 +9,7 @@ namespace NFine.Domain._03_Entity.My_ProjManage
 {
     public class MY_ProjInfo: IMyEntity<MY_ProjInfo>,ICreate,IModify,IDelete
     {
-        public int FID { get; set; }
+        public string FID { get; set; }
         public string FProCode { get; set; }
         public string FName { get; set; }
         public string Fdesc { get; set; }

@@ -6,10 +6,11 @@ using System.Web.Mvc;
 using NFine.Domain._03_Entity.My_ProjManage;
 using NFine.Application.My_ProjManage;
 using NFine.Code;
+using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Web.Areas.My_ProjManage.Controllers
 {
-    public class ProjInfoController : Controller
+    public class ProjInfoController : ControllerBase
     {
         private ProjInfoApp projApp = new ProjInfoApp();
         // GET: My_ProjManage/ProjInfo
@@ -30,8 +31,22 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
             return Content(data.ToJson());
         }
 
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetFormJson(string keyValue)
+        {
+            var data = projApp.GetEntity(keyValue);
+            return Content(data.ToJson());
+        }
 
-
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult SubmitForm(MY_ProjInfo userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
+        {
+            projApp.SubmitForm(userEntity, userLogOnEntity, keyValue);
+            return Success("操作成功。");
+        }
 
 
     }

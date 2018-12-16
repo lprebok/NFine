@@ -33,6 +33,7 @@ namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
         {
             var entity = this as IModify;
             entity.FWriteDate = DateTime.Now;
+            entity.FID = keyValue;
             var LoginInfo = OperatorProvider.Provider.GetCurrent();
             if (LoginInfo != null)
             {
