@@ -145,5 +145,15 @@ namespace NFine.Data
             tempData = tempData.Skip<TEntity>(pagination.rows * (pagination.page - 1)).Take<TEntity>(pagination.rows).AsQueryable();
             return tempData.ToList();
         }
+
+        public int UpdateCheck(string strSQl, DbParameter[] dbParameter)
+        {
+            return dbcontext.Database.ExecuteSqlCommand(strSQl, dbParameter);
+        }
+
+
+
+
+
     }
 }

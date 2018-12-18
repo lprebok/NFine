@@ -48,6 +48,25 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
             return Success("操作成功。");
         }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string keyValue)
+        {
+            projApp.DeleteForm(keyValue);
+            return Success("删除成功。");
+        }
+
+
+
+
+
+
+
+
+
+
 
     }
 }

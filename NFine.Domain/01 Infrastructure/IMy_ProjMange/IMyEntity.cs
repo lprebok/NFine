@@ -12,6 +12,7 @@ namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
         public void Create()
         {
             var entity = this as ICreate;
+            entity.FID = Common.GuId();
             entity.FWriteDate = DateTime.Now;
             entity.FCancelDate = DateTime.Now;
             entity.FCheckDate = DateTime.Now;

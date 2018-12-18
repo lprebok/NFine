@@ -34,6 +34,10 @@ namespace NFine.Application.My_ProjManage
             string strInfo = myService.InsertLog(myEntity);
             return strInfo;
         }
+        public void DeleteForm(string keyValue)
+        {
+            myService.DeleteInfo(keyValue);
+        }
 
         public MY_ProjInfo GetEntity(string strKeyValue)
         {
@@ -52,6 +56,16 @@ namespace NFine.Application.My_ProjManage
             }
             myService.SubmitForm(userEntity, userLogOnEntity, keyValue);
         }
+
+
+
+
+
+
+
+
+
+
 
     }
 }

@@ -8,6 +8,7 @@ namespace NFine.Domain._01_Infrastructure.IMy_ProjMange
 {
     public interface ICreate
     {
+        string FID { get; set; }
         string FWritePeople { get; set; }
         DateTime? FWriteDate { get; set; }
         int FCheckFlag { get; set; }

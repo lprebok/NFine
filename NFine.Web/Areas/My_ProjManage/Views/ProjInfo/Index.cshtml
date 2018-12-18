@@ -42,10 +42,12 @@
         $.modalOpen({
             id: "Form",
             title: "新增项目",
-            url: "/SystemManage/Role/Form",
+            url: "/My_ProjManage/ProjInfo/Form",
             width: "700px",
             height: "510px",
-            btn: null
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
         });
     }
     function btn_edit() {
@@ -62,8 +64,9 @@
         });
     }
     function btn_delete() {
+        var delkeyValue = $("#gridList").jqGridRowValue().FID;
         $.deleteForm({
-            url: "/SystemManage/Role/DeleteForm",
+            url: "/My_ProjManage/ProjInfo/DeleteForm?keyValue=" + delkeyValue,
             param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
