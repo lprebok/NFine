@@ -86,10 +86,10 @@
                         $password.focus();
                         $.login.formMessage('请输入登录密码。');
                         return false;
-                    } else if ($code.val() == "") {
-                        $code.focus();
-                        $.login.formMessage('请输入验证码。');
-                        return false;
+                    //} else if ($code.val() == "") {
+                    //    $code.focus();
+                    //    $.login.formMessage('请输入验证码。');
+                    //    return false;
                     } else {
                         $("#login_button").attr('disabled', 'disabled').find('span').html("loading...");
                         $.ajax({
