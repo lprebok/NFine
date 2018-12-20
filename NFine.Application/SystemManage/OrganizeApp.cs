@@ -19,7 +19,12 @@ namespace NFine.Application.SystemManage
 
         public List<OrganizeEntity> GetList()
         {
-            return service.IQueryable().OrderBy(t => t.F_CreatorTime).ToList();
+            return service.IQueryable().Where(t=>t.F_EnabledMark==true&&t.F_DeleteMark==false&&t.F_Layers==1).OrderBy(t => t.F_CreatorTime).ToList();
+        }
+        public List<OrganizeEntity> GetDeptList(string strKeyValue)
+        {
+            return service.IQueryable().Where(t => t.F_EnabledMark == true && t.F_DeleteMark == false && t.F_Layers == 2&&t.F_ParentId==strKeyValue)
+                .OrderBy(t => t.F_CreatorTime).ToList();
         }
         public OrganizeEntity GetForm(string keyValue)
         {

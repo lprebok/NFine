@@ -36,6 +36,24 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         }
         [HttpGet]
         [HandlerAjaxOnly]
+        public ActionResult GetTreeSelectDeptJson(string strKeyValue)
+        {
+            var data = organizeApp.GetDeptList(strKeyValue);
+            var treeList = new List<TreeSelectModel>();
+            foreach (OrganizeEntity item in data)
+            {
+                TreeSelectModel treeModel = new TreeSelectModel();
+                treeModel.id = item.F_Id;
+                treeModel.text = item.F_FullName;
+                treeModel.parentId = item.F_ParentId;
+                treeModel.data = item;
+                treeList.Add(treeModel);
+            }
+            //var vJson = treeList.TreeChildSelectJson(strKeyValue);
+            return Content(treeList.TreeChildSelectJson(strKeyValue));
+        }
+        [HttpGet]
+        [HandlerAjaxOnly]
         public ActionResult GetTreeJson()
         {
             var data = organizeApp.GetList();

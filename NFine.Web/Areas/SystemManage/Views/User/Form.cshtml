@@ -26,8 +26,9 @@
         $("#F_OrganizeId").bindSelect({
             url: "/SystemManage/Organize/GetTreeSelectJson"
         });
+        var strCompID = $("#F_OrganizeId option:selected").val();
         $("#F_DepartmentId").bindSelect({
-            url: "/SystemManage/Organize/GetTreeSelectJson",
+            url: "/SystemManage/Organize/GetTreeSelectDeptJson?strKeyValue="+strCompID,
         });
         $("#F_RoleId").bindSelect({
             url: "/SystemManage/Role/GetGridJson",
@@ -38,6 +39,12 @@
             url: "/SystemManage/Duty/GetGridJson",
             id: "F_Id",
             text: "F_FullName"
+        });
+    }
+    function InitDeptInfo() {
+        var vCompId = $("#F_OrganizeId").val();
+        $("#F_DepartmentId").bindSelect({
+            url: "/SystemManage/Organize/GetTreeSelectDeptJson?strKeyValue=" + vCompId,
         });
     }
     function submitForm() {
@@ -74,7 +81,7 @@
                 <tr>
                     <th class="formTitle">公司</th>
                     <td class="formValue">
-                        <select id="F_OrganizeId" name="F_OrganizeId" class="form-control required">
+                        <select id="F_OrganizeId" name="F_OrganizeId" class="form-control required" onchange="InitDeptInfo()" >
                         </select>
                     </td>
                     <th class="formTitle">部门</th>

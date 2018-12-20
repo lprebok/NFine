@@ -19,6 +19,14 @@ namespace NFine.Code
             sb.Append("]");
             return sb.ToString();
         }
+        public static string TreeChildSelectJson(this List<TreeSelectModel> data,string strParentID)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            sb.Append(TreeSelectJson(data, strParentID, ""));
+            sb.Append("]");
+            return sb.ToString();
+        }
         private static string TreeSelectJson(List<TreeSelectModel> data, string parentId, string blank)
         {
             StringBuilder sb = new StringBuilder();
