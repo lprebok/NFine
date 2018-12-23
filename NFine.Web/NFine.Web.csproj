@@ -121,6 +121,7 @@
     <Compile Include="Areas\ExampleManage\ExampleManageAreaRegistration.cs" />
     <Compile Include="Areas\MyPerson\Controllers\MyPersonController.cs" />
     <Compile Include="Areas\MyPerson\MyPersonAreaRegistration.cs" />
+    <Compile Include="Areas\My_ProjManage\Controllers\MyProjNeedInfoController.cs" />
     <Compile Include="Areas\My_ProjManage\Controllers\ProjInfoController.cs" />
     <Compile Include="Areas\My_ProjManage\My_ProjManageAreaRegistration.cs" />
     <Compile Include="Areas\ReportManage\Controllers\EchartsController.cs" />
@@ -626,6 +627,8 @@
     <Content Include="Areas\My_ProjManage\Views\web.config" />
     <Content Include="Areas\My_ProjManage\Views\ProjInfo\Index.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\ProjInfo\Form.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\MyProjNeedInfo\Index.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\MyProjNeedInfo\Form.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>
