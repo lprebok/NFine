@@ -7,13 +7,14 @@ using NFine.Domain._01_Infrastructure.IMy_ProjMange;
 
 namespace NFine.Domain._03_Entity.My_ProjManage
 {
-    public class My_ProjNeedInfo : IMyEntity<My_ProjNeedInfo>, ICreate, IModify, IDelete
+    public class MyProjNeedInfoList:IMyEntity<MyProjNeedInfoList>
     {
         public string FID { get; set; }
         /// <summary>
         /// 项目编码
         /// </summary>
         public string FProCode { get; set; }
+        public string FProName { get; set; }
         /// <summary>
         /// 项目标题
         /// </summary>
@@ -21,7 +22,7 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         /// <summary>
         /// 项目说明
         /// </summary>
-        public string FDetail { get; set; }
+        //public string FDetail { get; set; }
         /// <summary>
         /// 是否完成
         /// </summary>
@@ -38,13 +39,5 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         /// 实际完成日期
         /// </summary>
         public DateTime FActDate { get; set; }
-        public string FWritePeople { get; set; }
-        public DateTime? FWriteDate { get; set; }
-        public int FCheckFlag { get; set; }
-        public string FCheckPeople { get; set; }
-        public DateTime? FCheckDate { get; set; }
-        public int FCancelFlag { get; set; }
-        public string FCancelPeople { get; set; }
-        public DateTime? FCancelDate { get; set; }
     }
 }

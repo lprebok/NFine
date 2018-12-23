@@ -6,6 +6,8 @@
 *********************************************************************************/
 using NFine.Code;
 using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
@@ -151,7 +153,7 @@ namespace NFine.Data
             return dbcontext.Database.ExecuteSqlCommand(strSQl, dbParameter);
         }
 
-
+       
 
 
 

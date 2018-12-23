@@ -20,7 +20,7 @@ namespace NFine.Application.My_ProjManage
         private ModuleApp moduleApp = new ModuleApp();
         private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
 
-        public List<My_ProjNeedInfo> GetList(string keyword = "")
+        public List<MyProjNeedInfoList> GetList(string keyword = "")
         {
             //var expression = ExtLinq.True<My_ProjNeedInfo>();
             //if (!string.IsNullOrEmpty(keyword))
@@ -32,9 +32,10 @@ namespace NFine.Application.My_ProjManage
             //return myService.IQueryable(expression).OrderBy(t => t.FProCode).ToList();
             SqlParameter[] para = { new SqlParameter("@Para", SqlDbType.VarChar)};
             para[0].Value = keyword==null?"":keyword;
-            return myService.FindList("select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FDesc,mpr.FIsFinished,mpr.FApplyDate,mpr.FShouldDate," +
-                " mpr.FActDate,mpr.FDetail,mpr.FWriteDate,mpr.FWritePeople,"+
-                " mpr.FCancelDate, mpr.FCancelFlag, mpr.FCancelPeople, mpr.FCheckDate, mpr.FCheckFlag, mpr.FCheckPeople" +
+            IMyProjNeedInfoListRepository myProjNeedList = new MyProjNeedInfoListRepository();
+            return myProjNeedList.FindList("select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FDesc,mpr.FIsFinished,mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate" +
+                //" ,mpr.FDetail,mpr.FWriteDate,mpr.FWritePeople,"+
+                //" mpr.FCancelDate, mpr.FCancelFlag, mpr.FCancelPeople, mpr.FCheckDate, mpr.FCheckFlag, mpr.FCheckPeople" +
                 " from MY_ProjReqInfo as mpr " +
                 " left join MY_ProjInfo as mpi on mpr.FProCode=mpi.FProCode " +
                 " where (mpr.FDesc like '%'+@Para+'%' or mpi.FName like '%'+@Para+'%')" +
