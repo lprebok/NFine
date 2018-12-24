@@ -16,6 +16,10 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         public string FProCode { get; set; }
         public string FProName { get; set; }
         /// <summary>
+        /// 项目需求人
+        /// </summary>
+        public string FApplyPeople { get; set; }
+        /// <summary>
         /// 项目标题
         /// </summary>
         public string FDesc { get; set; }

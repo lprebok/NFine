@@ -33,7 +33,8 @@ namespace NFine.Application.My_ProjManage
             SqlParameter[] para = { new SqlParameter("@Para", SqlDbType.VarChar)};
             para[0].Value = keyword==null?"":keyword;
             IMyProjNeedInfoListRepository myProjNeedList = new MyProjNeedInfoListRepository();
-            return myProjNeedList.FindList("select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FDesc,mpr.FIsFinished,mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate" +
+            return myProjNeedList.FindList("select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FApplyPeople,mpr.FDesc,mpr.FIsFinished," +
+                "mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate " +
                 //" ,mpr.FDetail,mpr.FWriteDate,mpr.FWritePeople,"+
                 //" mpr.FCancelDate, mpr.FCancelFlag, mpr.FCancelPeople, mpr.FCheckDate, mpr.FCheckFlag, mpr.FCheckPeople" +
                 " from MY_ProjReqInfo as mpr " +
