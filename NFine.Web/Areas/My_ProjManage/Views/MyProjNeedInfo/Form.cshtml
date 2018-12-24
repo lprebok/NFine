@@ -7,7 +7,7 @@
 <script>
     var keyValue = $.request("keyValue");
     $(function () {
-        //initControl();
+        initControl();
         if (!!keyValue) {
             $.ajax({
                 url: "/My_ProjManage/MyProjNeedInfo/GetFormJson",
@@ -21,39 +21,39 @@
         }
     })
     function initControl() {
-        $("#F_OrganizeId").bindSelect({
-            url: "/SystemManage/Organize/GetTreeSelectJson",
+        $("#FProCode").bindSelect({
+            url: "/My_ProjManage/ProjInfo/GetBaseInfo",
         });
-        $("#F_Type").bindSelect({
-            url: "/SystemManage/ItemsData/GetSelectJson",
-            param: { enCode: "RoleType" }
-        });
-        $('#wizard').wizard().on('change', function (e, data) {
-            var $finish = $("#btn_finish");
-            var $next = $("#btn_next");
-            if (data.direction == "next") {
-                switch (data.step) {
-                    case 1:
-                        if (!$('#form1').formValid()) {
-                            return false;
-                        }
-                        $finish.show();
-                        $next.hide();
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                $finish.hide();
-                $next.show();
-            }
-        });
-        $("#permissionTree").treeview({
-            height: 444,
-            showcheck: true,
-            url: "/SystemManage/RoleAuthorize/GetPermissionTree",
-            param: { roleId: keyValue }
-        });
+        //$("#F_Type").bindSelect({
+        //    url: "/SystemManage/ItemsData/GetSelectJson",
+        //    param: { enCode: "RoleType" }
+        //});
+        //$('#wizard').wizard().on('change', function (e, data) {
+        //    var $finish = $("#btn_finish");
+        //    var $next = $("#btn_next");
+        //    if (data.direction == "next") {
+        //        switch (data.step) {
+        //            case 1:
+        //                if (!$('#form1').formValid()) {
+        //                    return false;
+        //                }
+        //                $finish.show();
+        //                $next.hide();
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    } else {
+        //        $finish.hide();
+        //        $next.show();
+        //    }
+        //});
+        //$("#permissionTree").treeview({
+        //    height: 444,
+        //    showcheck: true,
+        //    url: "/SystemManage/RoleAuthorize/GetPermissionTree",
+        //    param: { roleId: keyValue }
+        //});
     }
     function submitForm() {
         var postData = $("#form1").formSerialize();
@@ -78,7 +78,8 @@
                 <tr>
                     <th class="formTitle">项目信息</th>
                     <td class="formValue">
-                        <input id="FProCode" name="FProCode" type="text" class="form-control required" placeholder="请输入名称" />
+                        <select id="FProCode" name="FProCode" class="form-control required" ></select>
+                        @*<input id="FProCode" name="FProCode" type="text" class="form-control required" placeholder="请输入名称" />*@
                     </td>
 
                     <th class="formTitle">需求提出</th>

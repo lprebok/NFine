@@ -33,6 +33,24 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
 
         [HttpGet]
         [HandlerAjaxOnly]
+        public ActionResult GetBaseInfo()
+        {
+            var data = projApp.GetList();
+            var treeList = new List<TreeSelectModel>();
+            foreach (MY_ProjInfo item in data)
+            {
+                TreeSelectModel treeModel = new TreeSelectModel();
+                treeModel.id = item.FProCode;
+                treeModel.text = item.FName;
+                treeModel.parentId = "";
+                treeModel.data = item;
+                treeList.Add(treeModel);
+            }
+            return Content(treeList.TreeSelectJson());
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
         public ActionResult GetFormJson(string keyValue)
         {
             var data = projApp.GetEntity(keyValue);

@@ -364,12 +364,15 @@ $.fn.bindSelect = function (options) {
     var options = $.extend(defaults, options);
     var $element = $(this);
     if (options.url != "") {
+        //alert(options.url);
         $.ajax({
             url: options.url,
             data: options.param,
             dataType: "json",
             async: false,
             success: function (data) {
+                //alert(data);
+                //console.log(data);
                 $.each(data, function (i) {
                     $element.append($("<option></option>").val(data[i][options.id]).html(data[i][options.text]));
                 });

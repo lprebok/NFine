@@ -15,7 +15,8 @@ namespace NFine.Code
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
-            sb.Append(TreeSelectJson(data, "0", ""));
+            //sb.Append(TreeSelectJson(data, "0", ""));
+            sb.Append(TreesSelectJson(data));
             sb.Append("]");
             return sb.ToString();
         }
@@ -49,5 +50,23 @@ namespace NFine.Code
             }
             return sb.ToString().Replace("}{", "},{");
         }
+
+        private static string TreesSelectJson(List<TreeSelectModel> data)
+        {
+            StringBuilder sb = new StringBuilder();
+            //var ChildNodeList = data.FindAll(t => t.parentId == parentId);
+            var tabline = " ";
+            foreach (TreeSelectModel entity in data)
+            {
+                entity.text = tabline + entity.text;
+                string strJson = entity.ToJson();
+                sb.Append(strJson);
+                sb.Append(TreeSelectJson(data, entity.id, tabline));
+            }
+            return sb.ToString().Replace("}{", "},{");
+        }
+
+
+
     }
 }
