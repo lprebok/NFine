@@ -53,6 +53,7 @@
     <Compile Include="03 Entity\My_ProjManage\MyProjProgEntity.cs" />
     <Compile Include="03 Entity\My_ProjManage\MY_ProjInfo.cs" />
     <Compile Include="03 Entity\My_ProjManage\My_ProjNeedInfo.cs" />
+    <Compile Include="03 Entity\My_ProjManage\QueryEntity\MyProjProgListEntity.cs" />
     <Compile Include="03 Entity\SystemManage\AreaEntity.cs" />
     <Compile Include="03 Entity\SystemManage\ModuleButtonEntity.cs" />
     <Compile Include="03 Entity\SystemManage\ModuleEntity.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="04 IRepository\My_ProjManage\IMyProjNeedRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjProgRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjRepository.cs" />
+    <Compile Include="04 IRepository\My_ProjManage\IQueryRepository\IMyProgProgQueryRepository.cs" />
     <Compile Include="04 IRepository\SystemManage\IAreaRepository.cs" />
     <Compile Include="04 IRepository\SystemManage\IItemsDetailRepository.cs" />
     <Compile Include="04 IRepository\SystemManage\IItemsRepository.cs" />

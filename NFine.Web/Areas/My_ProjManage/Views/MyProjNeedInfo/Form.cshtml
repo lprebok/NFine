@@ -24,36 +24,6 @@
         $("#FProCode").bindSelect({
             url: "/My_ProjManage/ProjInfo/GetBaseInfo",
         });
-        //$("#F_Type").bindSelect({
-        //    url: "/SystemManage/ItemsData/GetSelectJson",
-        //    param: { enCode: "RoleType" }
-        //});
-        //$('#wizard').wizard().on('change', function (e, data) {
-        //    var $finish = $("#btn_finish");
-        //    var $next = $("#btn_next");
-        //    if (data.direction == "next") {
-        //        switch (data.step) {
-        //            case 1:
-        //                if (!$('#form1').formValid()) {
-        //                    return false;
-        //                }
-        //                $finish.show();
-        //                $next.hide();
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    } else {
-        //        $finish.hide();
-        //        $next.show();
-        //    }
-        //});
-        //$("#permissionTree").treeview({
-        //    height: 444,
-        //    showcheck: true,
-        //    url: "/SystemManage/RoleAuthorize/GetPermissionTree",
-        //    param: { roleId: keyValue }
-        //});
     }
     function submitForm() {
         var postData = $("#form1").formSerialize();

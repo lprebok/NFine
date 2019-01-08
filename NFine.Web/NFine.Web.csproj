@@ -382,6 +382,7 @@
     <Content Include="Content\js\zsign\jquery.zsign.css" />
     <Content Include="Content\js\zsign\jquery.zsign.js" />
     <Content Include="Content\js\zsign\signet.gif" />
+    <Content Include="Content\sql\MyProjSql.sql" />
     <Content Include="Global.asax" />
     <Content Include="Index.htm" />
     <Content Include="Web.config" />
@@ -631,6 +632,7 @@
     <Content Include="Areas\My_ProjManage\Views\MyProjNeedInfo\Index.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\MyProjNeedInfo\Form.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\MyProjProg\Index.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\MyProjProg\Form.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>
