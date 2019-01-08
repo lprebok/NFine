@@ -20,12 +20,18 @@ namespace NFine.Application.My_ProjManage
     {
         public IMyProjProgRepository myService = new MyProjProgRepository();
         private IMyProgProgQueryRepository QueryService = new MyProjProgQueryRepository();
+        private IMyCommonFuncRepository mfrService = new MyCommonFuncRepository();
         private ModuleApp moduleApp = new ModuleApp();
         private ModuleButtonApp moduleButtonApp = new ModuleButtonApp();
 
         public List<MyProjProgListEntity> GetList(string keyword = "")
         {
             return QueryService.GetList(keyword);
+        }
+
+        public DataTable GetProjList(string KeyWorld = "")
+        {
+            return QueryService.GetProjList(KeyWorld);
         }
 
         public MyProjProgEntity GetEntity(string strKeyValue)
@@ -36,6 +42,15 @@ namespace NFine.Application.My_ProjManage
         public void DeleteForm(string keyValue)
         {
             myService.DeleteInfo(keyValue);
+        }
+
+        /// <summary>
+        /// 获取人员信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetUserList()
+        {
+            return mfrService.GetPersonList();
         }
 
         public void SubmitForm(MyProjProgEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)

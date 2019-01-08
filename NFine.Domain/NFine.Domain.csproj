@@ -65,6 +65,7 @@
     <Compile Include="03 Entity\SystemSecurity\LogEntity.cs" />
     <Compile Include="02 ViewModel\AuthorizeActionModel.cs" />
     <Compile Include="04 IRepository\my_Person\ImyPersonRepository.cs" />
+    <Compile Include="04 IRepository\My_ProjManage\IMyCommonFuncRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjNeedInfoListRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjNeedRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjProgRepository.cs" />

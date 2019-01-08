@@ -9,6 +9,7 @@
     $(function () {
         initControl();
         if (!!keyValue) {
+            //alert("Test");
             $.ajax({
                 url: "/My_ProjManage/MyProjProg/GetFormJson",
                 data: { keyValue: keyValue },
@@ -22,37 +23,10 @@
     })
     function initControl() {
         $("#FProCode").bindSelect({
-            url: "/My_ProjManage/ProjInfo/GetBaseInfo",
+            url: "/My_ProjManage/ProjInfo/GetBaseInfo"
         });
-        $("#F_Type").bindSelect({
-            url: "/SystemManage/ItemsData/GetSelectJson",
-            param: { enCode: "RoleType" }
-        });
-        $('#wizard').wizard().on('change', function (e, data) {
-            var $finish = $("#btn_finish");
-            var $next = $("#btn_next");
-            if (data.direction == "next") {
-                switch (data.step) {
-                    case 1:
-                        if (!$('#form1').formValid()) {
-                            return false;
-                        }
-                        $finish.show();
-                        $next.hide();
-                        break;
-                    default:
-                        break;
-                }
-            } else {
-                $finish.hide();
-                $next.show();
-            }
-        });
-        $("#permissionTree").treeview({
-            height: 444,
-            showcheck: true,
-            url: "/SystemManage/RoleAuthorize/GetPermissionTree",
-            param: { roleId: keyValue }
+        $("#FCode").bindSelect({
+            url: "/My_ProjManage/MyProjProg/GetUserJson"
         });
     }
     function submitForm() {
@@ -84,10 +58,10 @@
                     <td class="formValue">
                         <input id="FEndDate" name="FEndDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
                     </td>
-                    <th class="formTitle">年度周次</th>
+                    @*<th class="formTitle">年度周次</th>
                     <td class="formValue">
                         <input id="FWeek" name="FWeek" readonly="readonly" type="text" class="form-control required" placeholder="周次信息" />
-                    </td>
+                    </td>*@
                 </tr>
                 <tr>
                     <th class="formTitle">项目信息</th>
@@ -96,13 +70,13 @@
                     </td>
                     <th class="formTitle">人员信息</th>
                     <td class="formValue">
-                        <input id="FCode" name="FCode" type="text" class="form-control required" placeholder="请选择人员信息" />
+                        <select id="FCode" name="FCode" class="form-control required"></select>
                     </td>
                 <tr>
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
                         本周内容
                     </th>
-                    <td class="formValue" colspan="5">
+                    <td class="formValue" colspan="3">
                         <textarea id="FThisWorkContent" name="FThisWorkContent" class="form-control" style="height: 110px;"></textarea>
                     </td>
                 </tr>
@@ -110,7 +84,7 @@
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
                         下周计划
                     </th>
-                    <td class="formValue" colspan="5">
+                    <td class="formValue" colspan="3">
                         <textarea id="FNextWorkPlan" name="FNextWorkPlan" class="form-control" style="height: 110px;"></textarea>
                     </td>
                 </tr>

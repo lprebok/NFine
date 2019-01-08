@@ -4,6 +4,13 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
+@*<style>
+    .ui-jqgrid-btable tr.jqgrow td {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>*@
 <script>
     $(function () {
         gridList();
@@ -18,7 +25,7 @@
                 
                 { label: "主键", name: "FBillNO", hidden: true, key: true },
                 //{ label: '年', name: 'FName', width: 100, align: 'left' },
-                { label: '周', name: 'FProCode', width: 100, align: 'left' },
+                { label: '周', name: 'FWeek', width: 100, align: 'left' },
                 {
                     label: '开始日期', name: 'FStarDate', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
@@ -28,19 +35,15 @@
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                 },
                 {
+                    label: "姓名", name: "FUserName", width: 100, height: 60, align: "left"
+                },
+                {
                     label: "项目", name: "FProName", width: 100, height: 60, align: "left"
                 },
                 { label: '本周目标', name: 'FThisWeekGoal', width: 200, align: 'left' },
                 { label: '本周完成', name: 'FThisWorkContent', width: 200, align: 'left' },
                 { label: '下周计划', name: 'FNextWorkPlan', width: 200, align: 'left' }
-            ],
-            gridComplete: function () {
-                var grid = $("#gridList");
-                var ids = grid.getDataIDs();
-                for (var i = 0; i < ids.length; i++) {
-                    grid.setRowData(ids[i], false, { height: 80 })
-                };
-            }
+            ]
         });
         $("#btn_search").click(function () {
             $gridList.jqGrid('setGridParam', {

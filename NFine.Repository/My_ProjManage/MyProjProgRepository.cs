@@ -32,6 +32,7 @@ namespace NFine.Repository.My_ProjManage
             }
             return strInfo;
         }
+
         public void SubmitForm(MyProjProgEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
         {
             using (var db = new RepositoryBase().BeginTrans())
@@ -97,8 +98,6 @@ namespace NFine.Repository.My_ProjManage
             return strLastBill;
         }
 
-
-
         /// <summary>
         /// 作废单据
         /// </summary>
@@ -116,6 +115,11 @@ namespace NFine.Repository.My_ProjManage
             //}
             return strInfo;
         }
+
+        
+         
+
+
 
     }
 }
