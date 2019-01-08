@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="my_person\myPersonMap.cs" />
+    <Compile Include="My_ProjManage\MyProjProgMap.cs" />
     <Compile Include="My_ProjManage\My_ProjManageMap.cs" />
     <Compile Include="My_ProjManage\My_projNeedMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
