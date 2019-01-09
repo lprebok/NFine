@@ -15,7 +15,8 @@ namespace NFine.Domain._04_IRepository.My_ProjManage
     {
         string InsertLog(MyNeedCheckProjEntity myEntity);
         void SubmitForm(MyNeedCheckProjEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue);
-
+        string BillIsChecked(string strBill);
+        string CheckOrUnCheck(string strBillNO, int iCheckFlag);
         DataTable GetProjList(string dtStarDate, string dtEndDate);
 
     }

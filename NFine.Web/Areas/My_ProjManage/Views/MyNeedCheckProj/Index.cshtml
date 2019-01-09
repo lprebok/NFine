@@ -23,7 +23,7 @@
                 rownumbers: true,
                 colModel: [
 
-                    { label: "主键", name: "FBillNO", hidden: true, key: true },
+                    { label: "主键", name: "FID", hidden: true, key: true },
                     //{ label: '年', name: 'FName', width: 100, align: 'left' },
                     { label: '周', name: 'FWeek', width: 100, align: 'left' },
                     {
@@ -34,10 +34,10 @@
                         label: '结束日期', name: 'FEndDate', width: 100, align: 'left',
                         formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                     },
-                    { label: '本周目标', name: 'FPlanContent', width: 200, align: 'left' },
-                    { label: '本周完成', name: 'FFinshInfo', width: 200, align: 'left' },
+                    { label: '本周目标', name: 'FPlanContent', width: 350, align: 'left' },
+                    { label: '本周完成', name: 'FFinshInfo', width: 350, align: 'left' },
                     {
-                        label: '是否审核', name: 'FCheckFlag', width: 100, align: 'left',
+                        label: '是否审核', name: 'FCheckFlag', width: 80, align: 'left',
                         formatter: function (cellvalue, options, rowObject) {
                             if (cellvalue == 1) {
                                 return '已审核';
@@ -68,7 +68,7 @@
             });
         }
         function btn_edit() {
-            var keyValue = $("#gridList").jqGridRowValue().FBillNO;
+            var keyValue = $("#gridList").jqGridRowValue().FID;
             var vResult123 = $.BillIsChecked({ url: "/My_ProjManage/MyNeedCheckProj/BillIsChecked?keyValue=" + keyValue});
             if (vResult123 == "0") {
                 $.modalOpen({
@@ -86,7 +86,7 @@
             }
         }
         function btn_delete() {
-            var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
+            var delkeyValue = $("#gridList").jqGridRowValue().FID;
 
             $.CanUpdateBill({
                 url: "/My_ProjManage/MyNeedCheckProj/BillIsChecked?keyValue=" + delkeyValue,
@@ -102,7 +102,7 @@
             );
         }
         function btn_Check() {
-            var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
+            var delkeyValue = $("#gridList").jqGridRowValue().FID;
             $.checkForm({
                 url: "/My_ProjManage/MyNeedCheckProj/CheckForm?keyValue=" + delkeyValue,
                 param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
@@ -112,7 +112,7 @@
             })
         }
         function btn_Uncheck() {
-            var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
+            var delkeyValue = $("#gridList").jqGridRowValue().FID;
             $.UncheckForm({
                 url: "/My_ProjManage/MyNeedCheckProj/UncheckForm?keyValue=" + delkeyValue,
                 param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
@@ -122,7 +122,7 @@
             })
         }
         function btn_details() {
-            var keyValue = $("#gridList").jqGridRowValue().FBillNO;
+            var keyValue = $("#gridList").jqGridRowValue().FID;
             $.modalOpen({
                 id: "Details",
                 title: "查看角色",

@@ -43,6 +43,7 @@ namespace NFine.Repository.My_ProjManage
                 }
                 if (!string.IsNullOrEmpty(keyValue))
                 {
+                    userEntity.FID = keyValue;
                     db.Update(userEntity);
                 }
                 else
@@ -62,9 +63,29 @@ namespace NFine.Repository.My_ProjManage
             }
         }
 
+        /// <summary>
+        /// 验证是否存在
+        /// </summary>
+        /// <param name="strBill"></param>
+        /// <returns></returns>
+        public string BillIsChecked(string strBill)
+        {
+            string strInfo = "";
+            MyNeedCheckProjEntity mppEntity = FindEntity(t => t.FID == strBill && t.FCheckFlag == 1);
+            if (mppEntity == null || string.IsNullOrWhiteSpace(mppEntity.FID) == true)
+            {
+                strInfo = "0";
+            }
+            else
+            {
+                strInfo = "1";
+            }
+            return strInfo;
+        }
+
         public DataTable GetProjList(string dtStarDate, string dtEndDate)
         {
-            string strCmd = " SELECT mncp.FWeek ,mncp.FStarDate ,mncp.FEndDate ,mncp.FPlanContent ,mncp.FFinshInfo ,mncp.FCheckFlag"+
+            string strCmd = " SELECT mncp.FID,mncp.FWeek ,mncp.FStarDate ,mncp.FEndDate ,mncp.FPlanContent ,mncp.FFinshInfo ,mncp.FCheckFlag" +
             " FROM dbo.MY_NeedCheckProject AS mncp "+
             " WHERE mncp.FCancelFlag = 0 AND mncp.FStarDate >= @StarDate AND mncp.FEndDate <= @EndDate";
             SqlParameter[] para = { new SqlParameter("@StarDate",SqlDbType.DateTime),
@@ -74,6 +95,36 @@ namespace NFine.Repository.My_ProjManage
             return sqlHelpService.ExecuteReturnDataTable(CommandType.Text,strCmd,para);
         }
 
+        public string CheckOrUnCheck(string strBillNO, int iCheckFlag)
+        {
+            string strResult = "";
+            OperatorModel cuModel = OperatorProvider.Provider.GetCurrent();
+            string strSqlCmd = "";
+            if (iCheckFlag == 0 || iCheckFlag == 1)
+            {
+                strSqlCmd = " UPDATE dbo.MY_NeedCheckProject SET FCheckFlag=@CheckFlag, " +
+                    "FCheckPeople=@FPeople,FCheckDate=GETDATE() WHERE FID=@BillNO ";
+                SqlParameter[] para = { new SqlParameter("@CheckFlag",SqlDbType.Int),
+                                        new SqlParameter("@FPeople",SqlDbType.VarChar),
+                                        new SqlParameter("@BillNO",SqlDbType.VarChar)};
+                para[0].Value = iCheckFlag;
+                para[1].Value = cuModel.UserCode;
+                para[2].Value = strBillNO;
+                sqlHelpService.ExecuteScalar(CommandType.Text, strSqlCmd, para);
+            }
+            else
+            {
+                strSqlCmd = " UPDATE dbo.MY_NeedCheckProject SET FCancelFlag=1,FCancelPeople=@FPeople,FCancelDate=GETDATE() " +
+                    " WHERE FID=@BillNO ";
+                SqlParameter[] para = { new SqlParameter("@FPeople",SqlDbType.VarChar),
+                                        new SqlParameter("@BillNO",SqlDbType.VarChar)};
+                para[0].Value = cuModel.UserCode;
+                para[1].Value = strBillNO;
+                sqlHelpService.ExecuteScalar(CommandType.Text, strSqlCmd, para);
+            }
+            strResult = iCheckFlag == 0 ? "反审核" : iCheckFlag == 1 ? "审核" : "作废" + "成功！";
+            return strResult;
+        }
 
 
 

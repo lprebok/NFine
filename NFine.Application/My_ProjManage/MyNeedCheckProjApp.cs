@@ -35,8 +35,20 @@ namespace NFine.Application.My_ProjManage
             return myService.FindEntity(strKeyValue);
         }
 
+        /// <summary>
+        /// 验证单据是否已经审核
+        /// </summary>
+        /// <param name="strBill"></param>
+        /// <returns></returns>
+        public string BillIsChecked(string strBill)
+        {
+            return myService.BillIsChecked(strBill);
+        }
 
-
+        public string CheckOrUnCheck(string strBillNO, int iCheckFlag)
+        {
+            return myService.CheckOrUnCheck(strBillNO,iCheckFlag);
+        }
 
 
     }

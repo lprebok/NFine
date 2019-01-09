@@ -46,7 +46,47 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
             return Success("操作成功。");
         }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        public ActionResult BillIsChecked(string keyValue)
+        {
+            string strInfo = myApp.BillIsChecked(keyValue);
+            return Success(strInfo);
+        }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteForm(string keyValue)
+        {
+            //projApp.DeleteForm(keyValue);
+            myApp.CheckOrUnCheck(keyValue, -1);
+            return Success("删除成功！");
+        }
+
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckForm(string keyValue)
+        {
+            //projApp.DeleteForm(keyValue);
+            myApp.CheckOrUnCheck(keyValue, 1);
+            return Success("审核成功！");
+        }
+
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult UncheckForm(string keyValue)
+        {
+            //projApp.DeleteForm(keyValue);
+            myApp.CheckOrUnCheck(keyValue, 0);
+            return Success("反审核成功！");
+        }
 
 
     }
