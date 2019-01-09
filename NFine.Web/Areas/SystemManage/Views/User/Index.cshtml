@@ -16,6 +16,12 @@
                 { label: '账户', name: 'F_Account', width: 80, align: 'left' },
                 { label: '姓名', name: 'F_RealName', width: 80, align: 'left' },
                 {
+                    label: '角色', name: 'F_RoleId', width: 80, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        return top.clients.role[cellvalue] == null ? "" : top.clients.role[cellvalue].fullname;
+                    }
+                },
+                {
                     label: '性别', name: 'F_Gender', width: 60, align: 'center',
                     formatter: function (cellvalue, options, rowObject) {
                         if (cellvalue == true) {

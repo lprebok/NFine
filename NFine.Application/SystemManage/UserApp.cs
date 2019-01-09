@@ -28,6 +28,7 @@ namespace NFine.Application.SystemManage
                 expression = expression.Or(t => t.F_MobilePhone.Contains(keyword));
             }
             expression = expression.And(t => t.F_Account != "admin");
+            expression = expression.And(t => t.F_DeleteMark == false);
             return service.FindList(expression, pagination);
         }
         public UserEntity GetForm(string keyValue)
@@ -46,6 +47,7 @@ namespace NFine.Application.SystemManage
             }
             else
             {
+                userEntity.F_DeleteMark = false;
                 userEntity.Create();
             }
             service.SubmitForm(userEntity, userLogOnEntity, keyValue);

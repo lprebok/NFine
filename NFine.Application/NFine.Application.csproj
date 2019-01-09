@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="01 Infrastructure\DbLogType.cs" />
     <Compile Include="My_Person\myPersonApp.cs" />
+    <Compile Include="My_ProjManage\MyCommonFuncApp.cs" />
+    <Compile Include="My_ProjManage\MyNeedCheckProjApp.cs" />
     <Compile Include="My_ProjManage\MyProjProgApp.cs" />
     <Compile Include="My_ProjManage\My_ProjNeedInfoApp.cs" />
     <Compile Include="My_ProjManage\ProjInfoApp.cs" />

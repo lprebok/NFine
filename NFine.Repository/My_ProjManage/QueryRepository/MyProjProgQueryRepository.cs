@@ -31,12 +31,12 @@ namespace NFine.Repository.My_ProjManage.QueryRepository
         {
             return sp.ExecuteReturnDataTable(CommandType.Text, "SELECT mppm.FCode ,mppm.FBillNO ,mppm.FWeek ,mppm.FProCode ,mpi.FName AS FProName ,"+
             " mppm.FLastBill ,mppm.FStarDate ,mppm.FEndDate ,mu.FName AS FUserName ," +
-            " mppm.FThisWorkContent, mppm.FNextWorkPlan, mppm2.FThisWorkContent AS FThisWeekGoal " +
+            " mppm.FThisWorkContent, mppm.FNextWorkPlan, mppm2.FThisWorkContent AS FThisWeekGoal,mppm.FCheckFlag " +
             " FROM dbo.MY_ProjProgressMain AS mppm " +
             " LEFT JOIN dbo.MY_ProjProgressMain AS mppm2 ON mppm2.FCode = mppm.FCode AND mppm.FLastBill = mppm2.FBillNO AND mppm2.FCancelFlag = 0 " +
             " LEFT JOIN dbo.MY_ProjInfo AS mpi ON mpi.FProCode=mppm.FProCode " +
             " LEFT JOIN dbo.MY_User AS mu ON mu.FCode=mppm.FCode " +
-            "  ", null);
+            " mppm.FCancelFlag=0 ", null);
         }
 
 

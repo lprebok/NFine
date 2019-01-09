@@ -1,0 +1,10 @@
+﻿
+1、IMyCommonFuncRepository：公用方法；
+2、MyCommonFuncApp：公用方法；
+	2.1、获取当前登录用户信息；
+3、ISqlHelper：自定义查询和执行特殊SQl命令方法接口；
+4、新增、修改方法用EF封装方法，审核、反审核、作废、查询列表用SqlHelper自定义；
+	4.1、审核、反审核、作废方法在Application项目下写；
+5、
+
+

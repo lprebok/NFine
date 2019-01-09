@@ -14,17 +14,23 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
     public class MyProjProgController : ControllerBase
     {
         private MyProjProgApp projApp = new MyProjProgApp();
+
         // GET: My_ProjManage/MyProjProg
         public ActionResult Index()
         {
             return View();
         }
-
+        public override ActionResult Form()
+        {
+            MyCommonFuncApp mc = new MyCommonFuncApp();
+            ViewBag.cuID = mc.GetCurrentUser().UserCode;
+            return View();
+        }
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetGridJson(string keyword)
+        public ActionResult GetGridJson(string keyword, string FStarDate, string FEndData)
         {
-            var data = projApp.GetProjList(keyword);
+            var data = projApp.GetProjList(FStarDate, FEndData,keyword);
             //string str = data.ToJson();
             return Content(data.ToJson());
         }
@@ -71,11 +77,41 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
-            projApp.DeleteForm(keyValue);
-            return Success("删除成功。");
+            //projApp.DeleteForm(keyValue);
+            projApp.CheckOrUnCheck(keyValue,-1);
+            return Success("删除成功！");
         }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckForm(string keyValue)
+        {
+            //projApp.DeleteForm(keyValue);
+            projApp.CheckOrUnCheck(keyValue, 1);
+            return Success("审核成功！");
+        }
 
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public ActionResult UncheckForm(string keyValue)
+        {
+            //projApp.DeleteForm(keyValue);
+            projApp.CheckOrUnCheck(keyValue, 0);
+            return Success("反审核成功！");
+        }
+
+        [HttpPost]
+        [HandlerAuthorize]
+        [HandlerAjaxOnly]
+        public ActionResult BillIsChecked(string keyValue)
+        {
+            string strInfo = projApp.BillIsChecked(keyValue);
+            return Success(strInfo);
+        }
 
 
 

@@ -49,6 +49,7 @@
     <Compile Include="01 Infrastructure\IMy_ProjMange\IModify.cs" />
     <Compile Include="01 Infrastructure\IMy_ProjMange\IMyEntity.cs" />
     <Compile Include="03 Entity\MY_Person\myPersonEntity.cs" />
+    <Compile Include="03 Entity\My_ProjManage\MyNeedCheckProjEntity.cs" />
     <Compile Include="03 Entity\My_ProjManage\MyProjNeedInfoList.cs" />
     <Compile Include="03 Entity\My_ProjManage\MyProjProgEntity.cs" />
     <Compile Include="03 Entity\My_ProjManage\MY_ProjInfo.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="02 ViewModel\AuthorizeActionModel.cs" />
     <Compile Include="04 IRepository\my_Person\ImyPersonRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyCommonFuncRepository.cs" />
+    <Compile Include="04 IRepository\My_ProjManage\IMyNeedCheckProjRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjNeedInfoListRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjNeedRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyProjProgRepository.cs" />

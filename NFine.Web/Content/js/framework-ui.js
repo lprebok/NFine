@@ -213,12 +213,198 @@ $.submitForm = function (options) {
         });
     }, 500);
 }
+$.CanUpdateBill = function (options, optionFunc) {
+    var defaults = {
+        prompt: "注：您确定要修改该项数据吗？",
+        url: "",
+        param: [],
+        loading: "正在验证数据...",
+        success: null,
+        close: true,
+        FuncType:""
+    };
+    var options = $.extend(defaults, options);
+    if ($('[name=__RequestVerificationToken]').length > 0) {
+        options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+    }
+    $.loading(true, options.loading);
+    window.setTimeout(function () {
+        $.ajax({
+            url: options.url,
+            data: options.param,
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.state == "success") {
+                    //options.success(data);
+                    //$.modalMsg(data.message, data.state);
+                    if (data.message == "0") {
+                        if (options.FuncType == "Edit") {
+                            $.modalOpen(optionFunc);
+                        } else if (options.FuncType == "Delete") {
+                            $.deleteForm(optionFunc);
+                        }
+                    } else {
+                        $.modalMsg("已审核单据不能修改！","error");
+                    }
+                    
+                } else {
+                    $.modalAlert(data.message, data.state);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.loading(false);
+                $.modalMsg(errorThrown, "error");
+            },
+            beforeSend: function () {
+                $.loading(true, options.loading);
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    }, 500);
+}
+$.BillIsChecked = function (options) {
+    var defaults = {
+        prompt: "注：您确定要修改该项数据吗？",
+        url: "",
+        param: [],
+        loading: "正在验证数据...",
+        success: null,
+        close: true,
+        FuncType: ""
+    };
+    var options = $.extend(defaults, options);
+    if ($('[name=__RequestVerificationToken]').length > 0) {
+        options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+    }
+    var vResult = "";
+    $.loading(true, options.loading);
+        $.ajax({
+            url: options.url,
+            data: options.param,
+            type: "post",
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                if (data.state == "success") {
+                    vResult = data.message; 
+                } else {
+                    $.modalAlert(data.message, data.state);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.loading(false);
+                $.modalMsg(errorThrown, "error");
+            },
+            beforeSend: function () {
+                $.loading(true, options.loading);
+            },
+            complete: function () {
+                $.loading(false);
+            }
+        });
+    return vResult;
+}
 $.deleteForm = function (options) {
     var defaults = {
         prompt: "注：您确定要删除该项数据吗？",
         url: "",
         param: [],
         loading: "正在删除数据...",
+        success: null,
+        close: true
+    };
+    var options = $.extend(defaults, options);
+    if ($('[name=__RequestVerificationToken]').length > 0) {
+        options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+    }
+    $.modalConfirm(options.prompt, function (r) {
+        if (r) {
+            //$.loading(true, options.loading);
+            window.setTimeout(function () {
+                $.ajax({
+                    url: options.url,
+                    data: options.param,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.state == "success") {
+                            options.success(data);
+                            $.modalMsg(data.message, data.state);
+                        } else {
+                            $.modalAlert(data.message, data.state);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.loading(false);
+                        $.modalMsg(errorThrown, "error");
+                    },
+                    beforeSend: function () {
+                        //$.loading(true, options.loading);
+                    },
+                    complete: function () {
+                        $.loading(false);
+                    }
+                });
+            }, 500);
+        }
+    });
+
+}
+$.checkForm = function (options) {
+    var defaults = {
+        prompt: "注：您确定要审核该项数据吗？",
+        url: "",
+        param: [],
+        loading: "正在审核数据...",
+        success: null,
+        close: true
+    };
+    var options = $.extend(defaults, options);
+    if ($('[name=__RequestVerificationToken]').length > 0) {
+        options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+    }
+    $.modalConfirm(options.prompt, function (r) {
+        if (r) {
+            $.loading(true, options.loading);
+            window.setTimeout(function () {
+                $.ajax({
+                    url: options.url,
+                    data: options.param,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.state == "success") {
+                            options.success(data);
+                            $.modalMsg(data.message, data.state);
+                        } else {
+                            $.modalAlert(data.message, data.state);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.loading(false);
+                        $.modalMsg(errorThrown, "error");
+                    },
+                    beforeSend: function () {
+                        $.loading(true, options.loading);
+                    },
+                    complete: function () {
+                        $.loading(false);
+                    }
+                });
+            }, 500);
+        }
+    });
+
+}
+$.UncheckForm = function (options) {
+    var defaults = {
+        prompt: "注：您确定要反审核该项数据吗？",
+        url: "",
+        param: [],
+        loading: "正在反审核数据...",
         success: null,
         close: true
     };
@@ -431,3 +617,36 @@ $.fn.dataGrid = function (options) {
     };
     $element.jqGrid(options);
 };
+$.getFirstDayOfThisMonth = function () {
+    var date = new Date();
+    date.setDate(1);
+    var month = parseInt(date.getMonth() + 1);
+    var day = date.getDate();
+    if (month < 10) {
+        month = '0' + month
+    }
+    if (day < 10) {
+        day = '0' + day
+    }
+    return date.getFullYear() + '-' + month + '-' + day;
+}
+$.getEndDayOfThisMonth = function () {
+    var date = new Date();
+    var currentMonth = date.getMonth();
+    var nextMonth = ++currentMonth;
+    var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth, 1);
+    var oneDay = 1000 * 60 * 60 * 24;
+    var lastTime = new Date(nextMonthFirstDay - oneDay);
+    var month = parseInt(lastTime.getMonth() + 1);
+    var day = lastTime.getDate();
+    if (month < 10) {
+        month = '0' + month
+    }
+    if (day < 10) {
+        day = '0' + day
+    }
+    return date.getFullYear() + '-' + month + '-' + day;
+}
+
+
+

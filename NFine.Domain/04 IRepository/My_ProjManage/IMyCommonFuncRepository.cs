@@ -16,7 +16,7 @@ namespace NFine.Domain._04_IRepository.My_ProjManage
         /// <returns></returns>
         DataTable GetPersonList();
 
-
+        string GetWeeks(DateTime dtStarDate, DateTime dtEndDate);
 
 
 

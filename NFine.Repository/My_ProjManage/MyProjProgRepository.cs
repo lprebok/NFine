@@ -17,6 +17,7 @@ namespace NFine.Repository.My_ProjManage
 {
     public class MyProjProgRepository:RepositoryBase<MyProjProgEntity>,IMyProjProgRepository
     {
+        private ISqlHelper sp = new SqlHelper();
         public string InsertLog(MyProjProgEntity myEntity)
         {
             string strInfo = "";
@@ -116,9 +117,44 @@ namespace NFine.Repository.My_ProjManage
             return strInfo;
         }
 
-        
-         
+        /// <summary>
+        /// 验证是否存在
+        /// </summary>
+        /// <param name="strBill"></param>
+        /// <returns></returns>
+        public string BillIsChecked(string strBill)
+        {
+            string strInfo = "";
+            MyProjProgEntity mppEntity = FindEntity(t => t.FBillNO == strBill && t.FCheckFlag == 1);
+            if (mppEntity==null||string.IsNullOrWhiteSpace(mppEntity.FBillNO) == true)
+            {
+                strInfo = "0";
+            }
+            else
+            {
+                strInfo = "1";
+            }
+            return strInfo;
+        }
 
+        public DataTable GetProjList(string dtStar, string dtEnd, string KeyWorld = "")
+        {
+            SqlParameter[] para = { new SqlParameter("@FKeyWorld",SqlDbType.VarChar),
+                                    new SqlParameter("@FStarDate",SqlDbType.DateTime),
+                                    new SqlParameter("@FEndDate",SqlDbType.DateTime)};
+            para[0].Value = string.IsNullOrWhiteSpace(KeyWorld)==true?"":KeyWorld;
+            para[1].Value = DateTime.Parse(string.IsNullOrEmpty(dtStar)==true?DateTime.Now.AddDays(-7).ToShortDateString():dtStar);
+            para[2].Value = DateTime.Parse(string.IsNullOrEmpty(dtEnd) == true ? DateTime.Now.ToShortDateString() : dtEnd);
+            return sp.ExecuteReturnDataTable(CommandType.Text, "SELECT mppm.FCode ,mppm.FBillNO ,mppm.FWeek ,mppm.FProCode ,mpi.FName AS FProName ," +
+            " mppm.FLastBill ,mppm.FStarDate ,mppm.FEndDate ,mu.FName AS FUserName ," +
+            " mppm.FThisWorkContent, mppm.FNextWorkPlan, mppm2.FThisWorkContent AS FThisWeekGoal,mppm.FCheckFlag " +
+            " FROM dbo.MY_ProjProgressMain AS mppm " +
+            " LEFT JOIN dbo.MY_ProjProgressMain AS mppm2 ON mppm2.FCode = mppm.FCode AND mppm.FLastBill = mppm2.FBillNO AND mppm2.FCancelFlag = 0 " +
+            " LEFT JOIN dbo.MY_ProjInfo AS mpi ON mpi.FProCode=mppm.FProCode " +
+            " LEFT JOIN dbo.MY_User AS mu ON mu.FCode=mppm.FCode " +
+            " WHERE mppm.FCancelFlag=0 AND (mpi.FName LIKE '%'+@FKeyWorld+'%' OR mu.FName LIKE '%'+@FKeyWorld+'%')" +
+            " AND mppm.FStarDate>=@FStarDate AND mppm.FEndDate<=@FEndDate", para);
+        }
 
 
     }

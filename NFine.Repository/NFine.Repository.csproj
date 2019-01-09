@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="myPersonRepository.cs" />
     <Compile Include="My_ProjManage\MyCommonFuncRepository.cs" />
+    <Compile Include="My_ProjManage\MyNeedCheckProjRepository.cs" />
     <Compile Include="My_ProjManage\MyProjNeedInfoListRepository.cs" />
     <Compile Include="My_ProjManage\MyProjProgRepository.cs" />
     <Compile Include="My_ProjManage\My_projNeedInfoRepository.cs" />

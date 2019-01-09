@@ -121,6 +121,7 @@
     <Compile Include="Areas\ExampleManage\ExampleManageAreaRegistration.cs" />
     <Compile Include="Areas\MyPerson\Controllers\MyPersonController.cs" />
     <Compile Include="Areas\MyPerson\MyPersonAreaRegistration.cs" />
+    <Compile Include="Areas\My_ProjManage\Controllers\MyNeedCheckProjController.cs" />
     <Compile Include="Areas\My_ProjManage\Controllers\MyProjNeedInfoController.cs" />
     <Compile Include="Areas\My_ProjManage\Controllers\MyProjProgController.cs" />
     <Compile Include="Areas\My_ProjManage\Controllers\ProjInfoController.cs" />
@@ -382,6 +383,7 @@
     <Content Include="Content\js\zsign\jquery.zsign.css" />
     <Content Include="Content\js\zsign\jquery.zsign.js" />
     <Content Include="Content\js\zsign\signet.gif" />
+    <Content Include="Content\ReadMe\系统说明.txt" />
     <Content Include="Content\sql\MyProjSql.sql" />
     <Content Include="Global.asax" />
     <Content Include="Index.htm" />
@@ -633,6 +635,9 @@
     <Content Include="Areas\My_ProjManage\Views\MyProjNeedInfo\Form.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\MyProjProg\Index.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\MyProjProg\Form.cshtml" />
+    <Content Include="Content\sql\项目管理.xlsx" />
+    <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Index.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Form.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>

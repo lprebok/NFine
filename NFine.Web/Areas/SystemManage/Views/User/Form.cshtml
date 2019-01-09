@@ -43,6 +43,7 @@
     }
     function InitDeptInfo() {
         var vCompId = $("#F_OrganizeId").val();
+        $("#F_DepartmentId").find("option").remove();
         $("#F_DepartmentId").bindSelect({
             url: "/SystemManage/Organize/GetTreeSelectDeptJson?strKeyValue=" + vCompId,
         });

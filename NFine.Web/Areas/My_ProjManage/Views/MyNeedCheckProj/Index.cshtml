@@ -17,8 +17,8 @@
             var vStar = $("#FStarDate").val();
             $gridList.dataGrid({
                 /*url: "/My_ProjManage/MyProjProg/GetGridJson?keyword=" + $("#txt_keyword").val() + "&FStarDate=" + $("#FStarDate").val() + "&FEndData=" + $("#FEndDate").val(),*/
-                url: "/My_ProjManage/MyProjProg/GetGridJson",
-                postData: { keyword: $("#txt_keyword").val(), FStarDate: $("#FStarDate").val(), FEndData: $("#FEndDate").val() },
+                url: "/My_ProjManage/MyNeedCheckProj/GetGridJson",
+                postData: { FStarDate: $("#FStarDate").val(), FEndData: $("#FEndDate").val() },
                 height: $(window).height() - 96,
                 rownumbers: true,
                 colModel: [
@@ -34,15 +34,8 @@
                         label: '结束日期', name: 'FEndDate', width: 100, align: 'left',
                         formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }
                     },
-                    {
-                        label: "姓名", name: "FUserName", width: 100, align: "left"
-                    },
-                    {
-                        label: "项目", name: "FProName", width: 100, align: "left"
-                    },
-                    { label: '本周目标', name: 'FThisWeekGoal', width: 200, align: 'left' },
-                    { label: '本周完成', name: 'FThisWorkContent', width: 200, align: 'left' },
-                    { label: '下周计划', name: 'FNextWorkPlan', width: 200, align: 'left' },
+                    { label: '本周目标', name: 'FPlanContent', width: 200, align: 'left' },
+                    { label: '本周完成', name: 'FFinshInfo', width: 200, align: 'left' },
                     {
                         label: '是否审核', name: 'FCheckFlag', width: 100, align: 'left',
                         formatter: function (cellvalue, options, rowObject) {
@@ -66,7 +59,7 @@
             $.modalOpen({
                 id: "Form",
                 title: "新增项目",
-                url: "/My_ProjManage/MyProjProg/Form",
+                url: "/My_ProjManage/MyNeedCheckProj/Form",
                 width: "700px",
                 height: "510px",
                 callBack: function (iframeId) {
@@ -76,12 +69,12 @@
         }
         function btn_edit() {
             var keyValue = $("#gridList").jqGridRowValue().FBillNO;
-            var vResult123 = $.BillIsChecked({ url: "/My_ProjManage/MyProjProg/BillIsChecked?keyValue=" + keyValue});
+            var vResult123 = $.BillIsChecked({ url: "/My_ProjManage/MyNeedCheckProj/BillIsChecked?keyValue=" + keyValue});
             if (vResult123 == "0") {
                 $.modalOpen({
                     id: "Form",
                     title: "修改项目",
-                    url: "/My_ProjManage/MyProjProg/Form?keyValue=" + keyValue,
+                    url: "/My_ProjManage/MyNeedCheckProj/Form?keyValue=" + keyValue,
                     width: "700px",
                     height: "510px",
                     callBack: function (iframeId) {
@@ -96,11 +89,11 @@
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
 
             $.CanUpdateBill({
-                url: "/My_ProjManage/MyProjProg/BillIsChecked?keyValue=" + delkeyValue,
+                url: "/My_ProjManage/MyNeedCheckProj/BillIsChecked?keyValue=" + delkeyValue,
                 FuncType: "Delete"
             },
                 {
-                    url: "/My_ProjManage/MyProjProg/DeleteForm?keyValue=" + delkeyValue,
+                    url: "/My_ProjManage/MyNeedCheckProj/DeleteForm?keyValue=" + delkeyValue,
                     param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
                     success: function () {
                         $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -111,7 +104,7 @@
         function btn_Check() {
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
             $.checkForm({
-                url: "/My_ProjManage/MyProjProg/CheckForm?keyValue=" + delkeyValue,
+                url: "/My_ProjManage/MyNeedCheckProj/CheckForm?keyValue=" + delkeyValue,
                 param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
                 success: function () {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -121,7 +114,7 @@
         function btn_Uncheck() {
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
             $.UncheckForm({
-                url: "/My_ProjManage/MyProjProg/UncheckForm?keyValue=" + delkeyValue,
+                url: "/My_ProjManage/MyNeedCheckProj/UncheckForm?keyValue=" + delkeyValue,
                 param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
                 success: function () {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -133,7 +126,7 @@
             $.modalOpen({
                 id: "Details",
                 title: "查看角色",
-                url: "/My_ProjManage/MyProjProg/Details?keyValue=" + keyValue,
+                url: "/My_ProjManage/MyNeedCheckProj/Details?keyValue=" + keyValue,
                 width: "550px",
                 height: "620px",
                 btn: null,
@@ -144,8 +137,8 @@
 <div class="topPanel">
     <div class="toolbar">
         @*<div class="btn-group">
-            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
-        </div>*@
+                <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+            </div>*@
         <div class="btn-group">
             <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建项目</a>
         </div>
@@ -166,8 +159,6 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="项目名称/人员姓名" style="width: 200px;">
-
                         <input id="FStarDate" name="FStarDate" type="text" class="form-control input-wdatepicker"
                                style="width:200px;margin-left:5px;" placeholder="开始日期" onfocus="WdatePicker()" />
                         <input id="FEndDate" name="FEndDate" type="text" class="form-control input-wdatepicker"
@@ -184,4 +175,3 @@
 <div class="gridPanel">
     <table id="gridList"></table>
 </div>
-

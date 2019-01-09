@@ -52,7 +52,7 @@ namespace NFine.Web.Controllers
         private object GetOrganizeList()
         {
             OrganizeApp organizeApp = new OrganizeApp();
-            var data = organizeApp.GetList();
+            var data = organizeApp.GetListAll();
             Dictionary<string, object> dictionary = new Dictionary<string, object>();
             foreach (OrganizeEntity item in data)
             {

@@ -7,12 +7,12 @@
 <script>
     var keyValue = $.request("keyValue");
     $(function () {
-        initControl();
+        //initControl();
         $("#FCode").val("@ViewBag.cuID");
         if (!!keyValue) {
             //alert("Test");
             $.ajax({
-                url: "/My_ProjManage/MyProjProg/GetFormJson",
+                url: "/My_ProjManage/MyNeedCheckProj/GetFormJson",
                 data: { keyValue: keyValue },
                 dataType: "json",
                 async: false,
@@ -34,7 +34,7 @@
         var postData = $("#form1").formSerialize();
         //postData["permissionIds"] = String($("#permissionTree").getCheckedNodes());
         $.submitForm({
-            url: "/My_ProjManage/MyProjProg/SubmitForm?keyValue=" + keyValue,
+            url: "/My_ProjManage/MyNeedCheckProj/SubmitForm?keyValue=" + keyValue,
             param: postData,
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
@@ -59,26 +59,13 @@
                     <td class="formValue">
                         <input id="FEndDate" name="FEndDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
                     </td>
-                    @*<th class="formTitle">年度周次</th>
-                    <td class="formValue">
-                        <input id="FWeek" name="FWeek" readonly="readonly" type="text" class="form-control required" placeholder="周次信息" />
-                    </td>*@
                 </tr>
-                <tr>
-                    <th class="formTitle">项目信息</th>
-                    <td class="formValue">
-                        <select id="FProCode" name="FProCode" class="form-control required"></select>
-                    </td>
-                    <th class="formTitle">人员信息</th>
-                    <td class="formValue">
-                        <select id="FCode" name="FCode" class="form-control required"></select>
-                    </td>
                 <tr>
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
                         本周内容
                     </th>
                     <td class="formValue" colspan="3">
-                        <textarea id="FThisWorkContent" name="FThisWorkContent" class="form-control" style="height: 110px;"></textarea>
+                        <textarea id="FPlanContent" name="FPlanContent" class="form-control" style="height: 110px;"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -86,7 +73,7 @@
                         下周计划
                     </th>
                     <td class="formValue" colspan="3">
-                        <textarea id="FNextWorkPlan" name="FNextWorkPlan" class="form-control" style="height: 110px;"></textarea>
+                        <textarea id="FFinshInfo" name="FFinshInfo" class="form-control" style="height: 110px;"></textarea>
                     </td>
                 </tr>
             </table>
