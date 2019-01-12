@@ -57,7 +57,6 @@
     }
     function submitForm() {
         var postData = $("#form1").formSerialize();
-        //postData["permissionIds"] = String($("#permissionTree").getCheckedNodes());
         $.submitForm({
             url: "/My_ProjManage/ProjInfo/SubmitForm?keyValue=" + keyValue,
             param: postData,
@@ -65,6 +64,8 @@
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         });
+        //$.currentWindow().$("#txtTestValue").val("Test");
+        //$.modalClose();
     }
 </script>
 <form id="form1">
