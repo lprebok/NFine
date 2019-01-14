@@ -15,6 +15,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using NFine.Data.Repository;
 
 namespace NFine.Data
 {
@@ -153,7 +154,16 @@ namespace NFine.Data
             return dbcontext.Database.ExecuteSqlCommand(strSQl, dbParameter);
         }
 
-       
+        public DataTable GetQueryTable(string strSQl, SqlParameter[] para)
+        {
+            ISqlHelper sp = new SqlHelper();
+            return sp.ExecuteReturnDataTable(CommandType.Text, strSQl, para);
+        }
+        public DataSet GetQueryDataSet(string strSQl, SqlParameter[] para)
+        {
+            ISqlHelper sp = new SqlHelper();
+            return sp.ExecuteReturnDataSet(CommandType.Text, strSQl, para);
+        }
 
 
 

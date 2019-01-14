@@ -21,9 +21,15 @@
         }
     })
     function initControl() {
+        $("#FApplyDate").val($.GetNowDate());
+        $("#FShouldDate").val($.GetNowDate());
         $("#FProCode").bindSelect({
             url: "/My_ProjManage/ProjInfo/GetBaseInfo",
         });
+        $("#FRecivePeople").bindSelect({
+            url: "/My_ProjManage/MyProjNeedInfo/GetUserJson",
+        });
+        
     }
     function submitForm() {
         var postData = $("#form1").formSerialize();
@@ -68,20 +74,27 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">完成日期</th>
+                    <th class="formTitle">对接人</th>
                     <td class="formValue">
-                        <input id="FActDate" name="FActDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />
+                        @*<input id="FActDate" name="FActDate" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" />*@
+                        <select id="FRecivePeople" name="FRecivePeople" class="form-control required"></select>
                     </td>
-                    <th class="formTitle">项目简介</th>
-                    <td class="formValue">
-                        <input id="FDesc" name="FDesc" type="text" class="form-control required" placeholder="请输入项目简介" />
+                    
+                    </tr>
+                <tr>
+                    <th class="formTitle">需求简介</th>
+                    <td class="formValue" colspan="3">
+                        @*<input id="FDesc" name="FDesc" type="text" class="form-control required" placeholder="请输入项目简介" />*@
+                        <textarea id="FDesc" name="FDesc" class="form-control" style="height: 60px;"></textarea>
                     </td>
-<tr>
+                </tr>
+                 <tr>
+
                     <th class="formTitle" valign="top" style="padding-top: 5px;">
-                        项目信息
+                        需求信息
                     </th>
                     <td class="formValue" colspan="3">
-                        <textarea id="FDetail" name="FDetail" class="form-control" style="height: 60px;"></textarea>
+                        <textarea id="FDetail" name="FDetail" class="form-control" style="height: 90px;"></textarea>
                     </td>
                 </tr>
             </table>

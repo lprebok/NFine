@@ -6,18 +6,22 @@
 
 <script>
     $(function () {
+        $("#FStarDate").val("2016-01-01");
+        $("#FEndDate").val($.getEndDayOfThisMonth());
         gridList();
     })
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             url: "/My_ProjManage/MyProjNeedInfo/GetGridJson",
+            postData: { strStarDate: $("#FStarDate").val(), strEndDate: $("#FEndDate").val(), keyword: $("#txt_keyword").val() },
             height: $(window).height() - 96,
             colModel: [
                 { label: "主键", name: "FID", hidden: true, key: true },
                 { label: '项目代码', name: 'FProCode', width: 100, align: 'left' },
                 { label: '项目名称', name: 'FProName', width: 100, align: 'left' },
                 { label: '需求提出人', name: 'FApplyPeople', width: 100, align: 'left' },
+                { label: '需求对接人', name: 'FApplyPeople', width: 100, align: 'left' },
                 {
                     label: '是否完成', name: 'FIsFinished', width: 100, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
@@ -29,7 +33,7 @@
                     }
                 },
                 {
-                    label: '项目概述', name: 'FDesc', width: 500, align: 'left'
+                    label: '需求简介', name: 'FDesc', width: 300, align: 'left'
                 },
                 {
                     label: '提出日期', name: 'FApplyDate', width: 100, align: 'left',
@@ -42,19 +46,29 @@
                 {
                     label: '实际完成日期', name: 'FActDate', width: 100, align: 'left',
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d'}
-                }
+                },
+                {
+                    label: '是否审核', name: 'FCheckFlag', width: 100, align: 'left',
+                    formatter: function (cellvalue, options, rowObject) {
+                        if (cellvalue == 0) {
+                            return '未审核';
+                        } else {
+                            return '已审核';
+                        }
+                    }}
             ]
         });
         $("#btn_search").click(function () {
             $gridList.jqGrid('setGridParam', {
-                postData: { keyword: $("#txt_keyword").val() },
+                postData: { strStarDate: $("#FStarDate").val(), strEndDate: $("#FEndDate").val(), keyword: $("#txt_keyword").val() }
+                //postData: { keyword: $("#txt_keyword").val() },
             }).trigger('reloadGrid');
         });
     }
     function btn_add() {
         $.modalOpen({
             id: "Form",
-            title: "新增项目",
+            title: "新增需求",
             url: "/My_ProjManage/MyProjNeedInfo/Form",
             width: "700px",
             height: "510px",
@@ -65,33 +79,86 @@
     }
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().FID;
-        $.modalOpen({
-            id: "Form",
-            title: "修改项目",
-            url: "/My_ProjManage/MyProjNeedInfo/Form?keyValue=" + keyValue,
-            width: "700px",
-            height: "510px",
-            callBack: function (iframeId) {
-                top.frames[iframeId].submitForm();
-            }
-        });
+        var vCanEdit = $.BillIsChecked({ url: "/My_ProjManage/MyProjNeedInfo/BillIsChecked?keyValue=" + keyValue });
+        if (vCanEdit == "0") {
+            $.modalOpen({
+                id: "Form",
+                title: "修改需求",
+                url: "/My_ProjManage/MyProjNeedInfo/Form?keyValue=" + keyValue,
+                width: "700px",
+                height: "510px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].submitForm();
+                }
+            });
+        } else {
+            $.modalAlert("已审核内容不能修改！", "error");
+        }
     }
-    function btn_delete() {
+    function btn_Check() {
         var delkeyValue = $("#gridList").jqGridRowValue().FID;
-        $.deleteForm({
-            url: "/My_ProjManage/MyProjNeedInfo/DeleteForm?keyValue=" + delkeyValue,
-            param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+        $.checkForm({
+            url: "/My_ProjManage/MyProjNeedInfo/CheckForm?keyValue=" + delkeyValue,
+            //param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
             success: function () {
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }
         })
     }
+    function btn_Uncheck() {
+        var delkeyValue = $("#gridList").jqGridRowValue().FID;
+        $.UncheckForm({
+            url: "/My_ProjManage/MyProjNeedInfo/UncheckForm?keyValue=" + delkeyValue,
+            //param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_End() {
+        var delkeyValue = $("#gridList").jqGridRowValue().FID;
+        $.EndForm({
+            url: "/My_ProjManage/MyProjNeedInfo/EndProjReq?keyValue=" + delkeyValue,
+            //param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_Star() {
+        var delkeyValue = $("#gridList").jqGridRowValue().FID;
+        $.EndForm({
+            url: "/My_ProjManage/MyProjNeedInfo/StarProjReq?keyValue=" + delkeyValue,
+            //param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_delete() {
+        var delkeyValue = $("#gridList").jqGridRowValue().FID;
+        var keyValue = $("#gridList").jqGridRowValue().FID;
+        var vCanEdit = $.BillIsChecked({ url: "/My_ProjManage/MyProjNeedInfo/BillIsChecked?keyValue=" + keyValue });
+        if (vCanEdit == "0") {
+            $.deleteForm({
+                url: "/My_ProjManage/MyProjNeedInfo/DeleteForm?keyValue=" + delkeyValue,
+                //param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+                success: function () {
+                    $.currentWindow().$("#gridList").trigger("reloadGrid");
+                }
+            })
+        } else {
+            $.modalAlert("已审核内容不能作废！", "error");
+        }
+
+        
+    }
     function btn_details() {
         var keyValue = $("#gridList").jqGridRowValue().F_Id;
         $.modalOpen({
             id: "Details",
-            title: "查看角色",
-            url: "/SystemManage/Role/Details?keyValue=" + keyValue,
+            title: "查看需求",
+            url: "/My_ProjManage/MyProjNeedInfo/Form?keyValue=" + keyValue,
             width: "550px",
             height: "620px",
             btn: null,
@@ -101,17 +168,22 @@
 
 <div class="topPanel">
     <div class="toolbar">
-        <div class="btn-group">
+        @*<div class="btn-group">
             <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
-        </div>
+        </div>*@
         <div class="btn-group">
-            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新建项目</a>
+            <a id="NF-add" authorize="yes" class="btn btn-primary dropdown-text" onclick="btn_add()"><i class="fa fa-plus"></i>新增需求</a>
         </div>
         <div class="operate">
             <ul class="nav nav-pills">
                 <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改项目</a></li>
-                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除项目</a></li>
+                <li><a id="NF-Look" authorize="yes" onclick="btn_details()"><i class="fa fa-pencil-square-o"></i>查看需求</a></li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改需求</a></li>
+                <li><a id="NF-Check" authorize="yes" onclick="btn_Check()"><i class="fa fa-pencil-square-o"></i>审核需求</a></li>
+                <li><a id="NF-UnCheck" authorize="yes" onclick="btn_Uncheck()"><i class="fa fa-pencil-square-o"></i>反审核需求</a></li>
+                <li><a id="NF-Star" authorize="yes" onclick="btn_Star()"><i class="fa fa-pencil-square-o"></i>开启需求</a></li>
+                <li><a id="NF-End" authorize="yes" onclick="btn_End()"><i class="fa fa-pencil-square-o"></i>结束需求</a></li>
+                <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>作废需求</a></li>
                 <li>@*<a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看角色</a>*@</li>
             </ul>
             <a href="javascript:;" class="close"></a>
@@ -123,7 +195,11 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control" placeholder="项目名称/项目代码" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="需求名称/需求代码" style="width: 200px;">
+                        <input id="FStarDate" name="FStarDate" type="text" class="form-control input-wdatepicker"
+                               style="width:200px;margin-left:5px;" placeholder="开始日期" onfocus="WdatePicker()" />
+                        <input id="FEndDate" name="FEndDate" type="text" class="form-control input-wdatepicker"
+                               style="width:200px;margin-left:5px;" placeholder="结束日期" onfocus="WdatePicker()" />
                         <span class="input-group-btn">
                             <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
                         </span>

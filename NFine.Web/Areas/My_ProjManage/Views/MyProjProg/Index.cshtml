@@ -112,7 +112,7 @@
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
             $.checkForm({
                 url: "/My_ProjManage/MyProjProg/CheckForm?keyValue=" + delkeyValue,
-                param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+                //param: { keyValue: $("#gridList").jqGridRowValue().FBillNO },
                 success: function () {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
                 }
@@ -122,7 +122,7 @@
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
             $.UncheckForm({
                 url: "/My_ProjManage/MyProjProg/UncheckForm?keyValue=" + delkeyValue,
-                param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+                //param: { keyValue: $("#gridList").jqGridRowValue().FBillNO },
                 success: function () {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");
                 }

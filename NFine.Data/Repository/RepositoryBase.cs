@@ -5,12 +5,14 @@
  * Website：http://www.nfine.cn
 *********************************************************************************/
 using NFine.Code;
+using NFine.Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -187,6 +189,17 @@ namespace NFine.Data
             pagination.records = tempData.Count();
             tempData = tempData.Skip<TEntity>(pagination.rows * (pagination.page - 1)).Take<TEntity>(pagination.rows).AsQueryable();
             return tempData.ToList();
+        }
+
+        public DataTable GetQueryTable(string strSQl, SqlParameter[] para)
+        {
+            ISqlHelper sp = new SqlHelper();
+            return sp.ExecuteReturnDataTable(CommandType.Text,strSQl,para);
+        }
+        public DataSet GetQueryDataSet(string strSQl, SqlParameter[] para)
+        {
+            ISqlHelper sp=new SqlHelper();
+            return sp.ExecuteReturnDataSet(CommandType.Text,strSQl,para);
         }
     }
 }

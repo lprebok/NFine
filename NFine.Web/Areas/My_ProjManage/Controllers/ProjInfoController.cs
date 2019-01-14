@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Web.Mvc;
 using NFine.Domain._03_Entity.My_ProjManage;
 using NFine.Application.My_ProjManage;
@@ -13,6 +14,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
     public class ProjInfoController : ControllerBase
     {
         private ProjInfoApp projApp = new ProjInfoApp();
+        private MyCommonFuncApp commApp = new MyCommonFuncApp();
         // GET: My_ProjManage/ProjInfo
         public ActionResult Index()
         {
@@ -24,11 +26,19 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
 
         [HttpGet]
         [HandlerAjaxOnly]
-        public ActionResult GetGridJson(string keyword)
+        public ActionResult GetGridJson(string keyword,string strStarDate,string strEndDate)
         {
-            var data = projApp.GetList(keyword);
+            var data = projApp.GetProList(strStarDate, strEndDate,keyword);
             //string str = data.ToJson();
             return Content(data.ToJson());
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetProType()
+        {
+            var data = commApp.GetProType();
+            return Content(commApp.DataTableToJson(data));
         }
 
         [HttpGet]

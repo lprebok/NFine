@@ -35,6 +35,18 @@ namespace NFine.Repository.My_ProjManage
             return strWeeks;
         }
 
+        public DataTable GetQueryDataTable(string strCMD, SqlParameter[] para)
+        {
+            ISqlHelper sp = new SqlHelper();
+            return sp.ExecuteReturnDataTable(CommandType.Text,strCMD, para);
+        }
+
+        public DataSet GetQueryDataSet(string strCMD, SqlParameter[] para)
+        {
+            ISqlHelper sp = new SqlHelper();
+            return sp.ExecuteReturnDataSet(CommandType.Text, strCMD, para);
+        }
+
 
 
     }

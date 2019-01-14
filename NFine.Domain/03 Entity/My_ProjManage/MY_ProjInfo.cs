@@ -13,8 +13,10 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         public string FProCode { get; set; }
         public string FName { get; set; }
         public string Fdesc { get; set; }
+        public string FProType { get; set; }
         public DateTime FStarDate { get; set; }
         public DateTime FEndDate { get; set; }
+        public int FEndFlag { get; set; }
         public string Fmaster { get; set; }
 
         public string FWritePeople { get; set; }

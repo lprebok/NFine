@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 using NFine.Domain.Entity.SystemManage;
 
 namespace NFine.Domain._04_IRepository.My_ProjManage
@@ -20,7 +22,6 @@ namespace NFine.Domain._04_IRepository.My_ProjManage
         string DeleteInfo(string strBill);
 
         void SubmitForm(MY_ProjInfo userEntity, UserLogOnEntity userLogOnEntity, string keyValue);
-
 
 
 

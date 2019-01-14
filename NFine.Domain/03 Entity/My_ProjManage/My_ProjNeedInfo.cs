@@ -30,6 +30,7 @@ namespace NFine.Domain._03_Entity.My_ProjManage
         /// 是否完成
         /// </summary>
         public int FIsFinished { get; set; }
+        public string FRecivePeople { get; set; }
         /// <summary>
         /// 需求提出日期
         /// </summary>

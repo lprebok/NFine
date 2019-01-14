@@ -18,7 +18,9 @@ namespace NFine.Domain._04_IRepository.My_ProjManage
 
         string GetWeeks(DateTime dtStarDate, DateTime dtEndDate);
 
+        DataTable GetQueryDataTable(string strCMD, SqlParameter[] para);
 
+        DataSet GetQueryDataSet(string strCMD, SqlParameter[] para);
 
     }
 }

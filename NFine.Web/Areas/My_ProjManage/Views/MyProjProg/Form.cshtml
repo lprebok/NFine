@@ -23,6 +23,8 @@
         }
     })
     function initControl() {
+        $("#FStarDate").val($.getFirstDayOfThisWeek());
+        $("#FEndDate").val($.getEndDayOfThisWeek());
         $("#FProCode").bindSelect({
             url: "/My_ProjManage/ProjInfo/GetBaseInfo"
         });
@@ -69,7 +71,7 @@
                     <td class="formValue">
                         <select id="FProCode" name="FProCode" class="form-control required"></select>
                     </td>
-                    <th class="formTitle">人员信息</th>
+                    <th class="formTitle">项目经理</th>
                     <td class="formValue">
                         <select id="FCode" name="FCode" class="form-control required"></select>
                     </td>

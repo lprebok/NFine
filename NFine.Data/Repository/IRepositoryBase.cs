@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace NFine.Data
 {
@@ -30,5 +32,7 @@ namespace NFine.Data
         List<TEntity> FindList<TEntity>(string strSql, DbParameter[] dbParameter) where TEntity : class;
         List<TEntity> FindList<TEntity>(Pagination pagination) where TEntity : class,new();
         List<TEntity> FindList<TEntity>(Expression<Func<TEntity, bool>> predicate, Pagination pagination) where TEntity : class,new();
+        DataTable GetQueryTable(string strSQl,SqlParameter[] para);
+        DataSet GetQueryDataSet(string strSQl,SqlParameter[] para);
     }
 }

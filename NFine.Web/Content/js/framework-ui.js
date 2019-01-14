@@ -445,6 +445,52 @@ $.UncheckForm = function (options) {
     });
 
 }
+$.EndForm = function (options) {
+    var defaults = {
+        prompt: "注：您确定要操作该项数据吗？",
+        url: "",
+        param: [],
+        loading: "正在结束项目...",
+        success: null,
+        close: true
+    };
+    var options = $.extend(defaults, options);
+    if ($('[name=__RequestVerificationToken]').length > 0) {
+        options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val();
+    }
+    $.modalConfirm(options.prompt, function (r) {
+        if (r) {
+            $.loading(true, options.loading);
+            window.setTimeout(function () {
+                $.ajax({
+                    url: options.url,
+                    data: options.param,
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.state == "success") {
+                            options.success(data);
+                            $.modalMsg(data.message, data.state);
+                        } else {
+                            $.modalAlert(data.message, data.state);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $.loading(false);
+                        $.modalMsg(errorThrown, "error");
+                    },
+                    beforeSend: function () {
+                        $.loading(true, options.loading);
+                    },
+                    complete: function () {
+                        $.loading(false);
+                    }
+                });
+            }, 500);
+        }
+    });
+
+}
 $.jsonWhere = function (data, action) {
     if (action == null) return;
     var reval = new Array();
@@ -617,6 +663,21 @@ $.fn.dataGrid = function (options) {
     };
     $element.jqGrid(options);
 };
+$.GetNowDate = function () {
+    var date = new Date();
+    var seperator1 = "-";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}
 $.getFirstDayOfThisMonth = function () {
     var date = new Date();
     date.setDate(1);
@@ -647,6 +708,28 @@ $.getEndDayOfThisMonth = function () {
     }
     return date.getFullYear() + '-' + month + '-' + day;
 }
-
+$.getFirstDayOfThisWeek = function () {
+    var vNowWeekDay=new Date();
+    var weekday = vNowWeekDay.getDay() || 7; //获取星期几,getDay()返回值是 0（周日） 到 6（周六） 之间的一个整数。0||7为7，即weekday的值为1-7
+    vNowWeekDay.setDate(vNowWeekDay.getDate() - weekday + 1);//往前算（weekday-1）天，年份、月份会自动变化
+    if (!vNowWeekDay || typeof (vNowWeekDay) === "string") {
+        this.error("参数异常，请检查...");
+    }
+    var y = vNowWeekDay.getFullYear(); //年
+    var m = vNowWeekDay.getMonth() + 1; //月
+    var d = vNowWeekDay.getDate(); //日
+    return y + "-" + m + "-" + d;
+}
+$.getEndDayOfThisWeek = function () {
+    var vNowWeekDay = new Date();
+    var weekEndDate = new Date(vNowWeekDay.getFullYear(), vNowWeekDay.getMonth(), vNowWeekDay.getDate() + (6 - vNowWeekDay.getDay() + 1));
+    if (!weekEndDate || typeof (weekEndDate) === "string") {
+        this.error("参数异常，请检查...");
+    }
+    var y = weekEndDate.getFullYear(); //年
+    var m = weekEndDate.getMonth() + 1; //月
+    var d = weekEndDate.getDate(); //日
+    return y + "-" + m + "-" + d;
+}
 
 

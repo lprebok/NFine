@@ -7,7 +7,9 @@
 using NFine.Code;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -32,5 +34,7 @@ namespace NFine.Data
         List<TEntity> FindList(string strSql, DbParameter[] dbParameter);
         List<TEntity> FindList(Pagination pagination);
         List<TEntity> FindList(Expression<Func<TEntity, bool>> predicate, Pagination pagination);
+        DataTable GetQueryTable(string strSQl, SqlParameter[] para);
+        DataSet GetQueryDataSet(string strSQl, SqlParameter[] para);
     }
 }

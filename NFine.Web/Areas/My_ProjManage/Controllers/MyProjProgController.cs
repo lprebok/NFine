@@ -64,7 +64,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult SubmitForm(MyProjProgEntity userEntity, UserLogOnEntity userLogOnEntity, string keyValue)
         {
             projApp.SubmitForm(userEntity, userLogOnEntity, keyValue);
@@ -74,7 +74,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         [HttpPost]
         [HandlerAuthorize]
         [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteForm(string keyValue)
         {
             //projApp.DeleteForm(keyValue);
@@ -85,7 +85,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         [HttpPost]
         [HandlerAuthorize]
         [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult CheckForm(string keyValue)
         {
             //projApp.DeleteForm(keyValue);
@@ -96,7 +96,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         [HttpPost]
         [HandlerAuthorize]
         [HandlerAjaxOnly]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult UncheckForm(string keyValue)
         {
             //projApp.DeleteForm(keyValue);
