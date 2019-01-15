@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyDataMange\MY_DataDictInfoRepository.cs" />
+    <Compile Include="MyDataMange\MY_DataDictionaryRepository.cs" />
     <Compile Include="myPersonRepository.cs" />
     <Compile Include="My_ProjManage\MyCommonFuncRepository.cs" />
     <Compile Include="My_ProjManage\MyNeedCheckProjRepository.cs" />

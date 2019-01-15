@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyDataMange\MY_DataDictInfoMap.cs" />
+    <Compile Include="MyDataMange\MY_DataDictionaryMap.cs" />
     <Compile Include="my_person\myPersonMap.cs" />
     <Compile Include="My_ProjManage\MyNeedCheckProjMap.cs" />
     <Compile Include="My_ProjManage\MyProjProgMap.cs" />

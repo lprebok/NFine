@@ -119,6 +119,8 @@
     <Compile Include="Areas\ExampleManage\Controllers\SendMessagesController.cs" />
     <Compile Include="Areas\ExampleManage\Controllers\SignetController.cs" />
     <Compile Include="Areas\ExampleManage\ExampleManageAreaRegistration.cs" />
+    <Compile Include="Areas\MyDataManage\Controllers\MyDataMangeController.cs" />
+    <Compile Include="Areas\MyDataManage\MyDataManageAreaRegistration.cs" />
     <Compile Include="Areas\MyPerson\Controllers\MyPersonController.cs" />
     <Compile Include="Areas\MyPerson\MyPersonAreaRegistration.cs" />
     <Compile Include="Areas\My_ProjManage\Controllers\MyNeedCheckProjController.cs" />
@@ -567,6 +569,8 @@
     <Content Include="Areas\ReportManage\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\MyDataManage\Models\" />
+    <Folder Include="Areas\MyDataManage\Views\Shared\" />
     <Folder Include="Areas\MyPerson\Models\" />
     <Folder Include="Areas\MyPerson\Views\Shared\" />
     <Folder Include="Areas\My_ProjManage\Models\" />
@@ -638,6 +642,8 @@
     <Content Include="Content\sql\项目管理.xlsx" />
     <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Index.cshtml" />
     <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Form.cshtml" />
+    <Content Include="Areas\MyDataManage\Views\web.config" />
+    <Content Include="Areas\MyDataManage\Views\MyDataMange\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>

@@ -48,6 +48,8 @@
     <Compile Include="01 Infrastructure\IMy_ProjMange\IDelete.cs" />
     <Compile Include="01 Infrastructure\IMy_ProjMange\IModify.cs" />
     <Compile Include="01 Infrastructure\IMy_ProjMange\IMyEntity.cs" />
+    <Compile Include="03 Entity\MyDataManage\MY_DataDictInfoEntity.cs" />
+    <Compile Include="03 Entity\MyDataManage\MY_DataDictionaryEntity.cs" />
     <Compile Include="03 Entity\MY_Person\myPersonEntity.cs" />
     <Compile Include="03 Entity\My_ProjManage\MyNeedCheckProjEntity.cs" />
     <Compile Include="03 Entity\My_ProjManage\MyProjNeedInfoList.cs" />
@@ -65,6 +67,8 @@
     <Compile Include="03 Entity\SystemSecurity\FilterIPEntity.cs" />
     <Compile Include="03 Entity\SystemSecurity\LogEntity.cs" />
     <Compile Include="02 ViewModel\AuthorizeActionModel.cs" />
+    <Compile Include="04 IRepository\MyDataMange\IMY_DataDictInfoRepository.cs" />
+    <Compile Include="04 IRepository\MyDataMange\IMY_DataDictionaryRepository.cs" />
     <Compile Include="04 IRepository\my_Person\ImyPersonRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyCommonFuncRepository.cs" />
     <Compile Include="04 IRepository\My_ProjManage\IMyNeedCheckProjRepository.cs" />
