@@ -14,6 +14,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
     public class MyProjProgController : ControllerBase
     {
         private MyProjProgApp projApp = new MyProjProgApp();
+        private MyCommonFuncApp commApp = new MyCommonFuncApp();
 
         // GET: My_ProjManage/MyProjProg
         public ActionResult Index()
@@ -60,6 +61,30 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
             }
             string str = treeList.ToJson();
             return Content(treeList.ToJson());
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetYearJson()
+        {
+            var data = commApp.GetYear();
+            return Content(commApp.DataTableToJson(data));
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetWeekJson()
+        {
+            var data = commApp.GetWeek();
+            return Content(commApp.DataTableToJson(data));
+        }
+
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetProTypeJson()
+        {
+            var data = commApp.GetProType();
+            return Content(commApp.DataTableToJson(data));
         }
 
         [HttpPost]

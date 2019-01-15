@@ -603,8 +603,6 @@ $.fn.bindSelect = function (options) {
             dataType: "json",
             async: false,
             success: function (data) {
-                //alert(data);
-                //console.log(data);
                 $.each(data, function (i) {
                     $element.append($("<option></option>").val(data[i][options.id]).html(data[i][options.text]));
                 });
@@ -731,5 +729,70 @@ $.getEndDayOfThisWeek = function () {
     var d = weekEndDate.getDate(); //日
     return y + "-" + m + "-" + d;
 }
+//获取当前日期是第几周
+$.getDayOfWeekOrder=function (dt) {
+    let d1 = new Date(dt);
+    let d2 = new Date(dt);
+    d2.setMonth(0);
+    d2.setDate(1);
+    let rq = d1 - d2;
+    let days = Math.ceil(rq / (24 * 60 * 60 * 1000));
+    let num = Math.ceil(days / 7);
+    return num;
+}
+//获取某年某周的开始日期 
+$.getBeginDayOfSetWeek=function (paraYear, weekIndex) {
+    var firstDay = GetFirstWeekBegDay(paraYear);
+    //7*24*3600000 是一星期的时间毫秒数,(JS中的日期精确到毫秒) 
+    var time = (weekIndex - 1) * 7 * 24 * 3600000;
+    var beginDay = firstDay;
+    //为日期对象 date 重新设置成时间 time 
+    beginDay.setTime(firstDay.valueOf() + time);
+    return formatDate(beginDay);
+}
+　　//获取某年某周的结束日期 
+$.getEndDayOfSetWeek=function (paraYear, weekIndex) {
+    var firstDay = GetFirstWeekBegDay(paraYear);
+    //7*24*3600000 是一星期的时间毫秒数,(JS中的日期精确到毫秒) 
+    var time = (weekIndex - 1) * 7 * 24 * 3600000;
+    var weekTime = 6 * 24 * 3600000;
+    var endDay = firstDay;
+    //为日期对象 date 重新设置成时间 time 
+    endDay.setTime(firstDay.valueOf() + weekTime + time);
+    return formatDate(endDay);
+}
+　　//获取日期为某年的第几周 
+function GetWeekIndex(dateobj) {
+    var firstDay = GetFirstWeekBegDay(dateobj.getFullYear());
+    if (dateobj < firstDay) {
+        firstDay = GetFirstWeekBegDay(dateobj.getFullYear() - 1);
+    }
+    d = Math.floor((dateobj.valueOf() - firstDay.valueOf()) / 86400000);
+    return Math.floor(d / 7) + 1;
+}
+　　//获取某年的第一天 
+function GetFirstWeekBegDay(year) {
+    var tempdate = new Date(year, 0, 1);
+    var temp = tempdate.getDay();
+    if (temp == 1) {
+        return tempdate;
+    }
+    temp = (temp === 0 ? 7 : temp);
+    tempdate = tempdate.setDate(tempdate.getDate() + (8 - temp));
+    return new Date(tempdate);
+}
+//格式化日期：yyyy-MM-dd　　 
+function formatDate(date) {
+    var myyear = date.getFullYear();
+    var mymonth = date.getMonth() + 1;
+    var myweekday = date.getDate();
 
+    if (mymonth < 10) {
+        mymonth = "0" + mymonth;
+    }
+    if (myweekday < 10) {
+        myweekday = "0" + myweekday;
+    }
+    return (myyear + "-" + mymonth + "-" + myweekday);
+}　　　
 

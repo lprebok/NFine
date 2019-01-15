@@ -36,9 +36,10 @@ namespace NFine.Application.My_ProjManage
             para[0].Value = keyword==null?"":keyword;
             IMyProjNeedInfoListRepository myProjNeedList = new MyProjNeedInfoListRepository();
             return myProjNeedList.FindList("select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FApplyPeople,mpr.FDesc,mpr.FIsFinished," +
-                "mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate " +
+                "mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate,mu.FName AS FRecvName " +
                 " from MY_ProjReqInfo as mpr " +
                 " left join MY_ProjInfo as mpi on mpr.FProCode=mpi.FProCode " +
+                " LEFT JOIN dbo.MY_User AS mu ON mu.FCode=mpr.FRecivePeople " +
                 " where (mpr.FDesc like '%'+@Para+'%' or mpi.FName like '%'+@Para+'%')" +
                 " and mpr.FCancelFlag=0", para);
             
@@ -47,9 +48,10 @@ namespace NFine.Application.My_ProjManage
         public DataTable GetEntityList(string strStarDate, string strEndDate, string keyword = "")
         {
             string strCMD = "select mpr.FID,mpr.FProCode,mpi.FName FProName,mpr.FApplyPeople,mpr.FDesc,mpr.FIsFinished," +
-                "mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate,mpr.FCheckFlag " +
+                "mpr.FApplyDate,mpr.FShouldDate,mpr.FActDate,mpr.FCheckFlag ,mu.FName AS FRecvName" +
                 " from MY_ProjReqInfo as mpr " +
                 " left join MY_ProjInfo as mpi on mpr.FProCode=mpi.FProCode " +
+                " LEFT JOIN dbo.MY_User AS mu ON mu.FCode=mpr.FRecivePeople " +
                 " where (mpr.FDesc like '%'+@FProInfo+'%' or mpi.FName like '%'+@FProInfo+'%') " +
                 " AND mpr.FApplyDate>=@StarDate AND mpr.FApplyDate<+@EndDate " +
                 " and mpr.FCancelFlag=0";

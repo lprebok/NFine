@@ -21,7 +21,7 @@
                 { label: '项目代码', name: 'FProCode', width: 100, align: 'left' },
                 { label: '项目名称', name: 'FProName', width: 100, align: 'left' },
                 { label: '需求提出人', name: 'FApplyPeople', width: 100, align: 'left' },
-                { label: '需求对接人', name: 'FApplyPeople', width: 100, align: 'left' },
+                { label: '需求对接人', name: 'FRecvName', width: 100, align: 'left' },
                 {
                     label: '是否完成', name: 'FIsFinished', width: 100, align: 'left',
                     formatter: function (cellvalue, options, rowObject) {
@@ -159,8 +159,8 @@
             id: "Details",
             title: "查看需求",
             url: "/My_ProjManage/MyProjNeedInfo/Form?keyValue=" + keyValue,
-            width: "550px",
-            height: "620px",
+            width: "700px",
+            height: "510px",
             btn: null,
         });
     }

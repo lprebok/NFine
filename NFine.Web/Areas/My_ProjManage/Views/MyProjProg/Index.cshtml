@@ -68,7 +68,7 @@
                 title: "新增项目",
                 url: "/My_ProjManage/MyProjProg/Form",
                 width: "700px",
-                height: "510px",
+                height: "550px",
                 callBack: function (iframeId) {
                     top.frames[iframeId].submitForm();
                 }
@@ -83,7 +83,7 @@
                     title: "修改项目",
                     url: "/My_ProjManage/MyProjProg/Form?keyValue=" + keyValue,
                     width: "700px",
-                    height: "510px",
+                    height: "550px",
                     callBack: function (iframeId) {
                         top.frames[iframeId].submitForm();
                     }
@@ -94,19 +94,29 @@
         }
         function btn_delete() {
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
-
-            $.CanUpdateBill({
-                url: "/My_ProjManage/MyProjProg/BillIsChecked?keyValue=" + delkeyValue,
-                FuncType: "Delete"
-            },
-                {
+            var vResult123 = $.BillIsChecked({ url: "/My_ProjManage/MyProjProg/BillIsChecked?keyValue=" + delkeyValue });
+            if (vResult123 == "0") {
+                $.deleteForm({
                     url: "/My_ProjManage/MyProjProg/DeleteForm?keyValue=" + delkeyValue,
-                    param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
                     success: function () {
                         $.currentWindow().$("#gridList").trigger("reloadGrid");
                     }
-                }
-            );
+                })
+            } else {
+                $.modalAlert("已审核内容不能作废！", "error");
+            }
+            //$.CanUpdateBill({
+            //    url: "/My_ProjManage/MyProjProg/BillIsChecked?keyValue=" + delkeyValue,
+            //    FuncType: "Delete"
+            //},
+            //    {
+            //        url: "/My_ProjManage/MyProjProg/DeleteForm?keyValue=" + delkeyValue,
+            //        param: { keyValue: $("#gridList").jqGridRowValue().F_Id },
+            //        success: function () {
+            //            $.currentWindow().$("#gridList").trigger("reloadGrid");
+            //        }
+            //    }
+            //);
         }
         function btn_Check() {
             var delkeyValue = $("#gridList").jqGridRowValue().FBillNO;
@@ -132,10 +142,10 @@
             var keyValue = $("#gridList").jqGridRowValue().FBillNO;
             $.modalOpen({
                 id: "Details",
-                title: "查看角色",
-                url: "/My_ProjManage/MyProjProg/Details?keyValue=" + keyValue,
-                width: "550px",
-                height: "620px",
+                title: "查看进度",
+                url: "/My_ProjManage/MyProjProg/Form?keyValue=" + keyValue,
+                width: "700px",
+                height: "550px",
                 btn: null,
             });
         }
@@ -152,9 +162,10 @@
         <div class="operate">
             <ul class="nav nav-pills">
                 <li class="first">已选中<span>1</span>项</li>
-                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改项目</a></li>
-                <li><a id="NF-Check" authorize="yes" onclick="btn_Check()"><i class="fa fa-pencil-square-o"></i>审核项目</a></li>
-                <li><a id="NF-UnCheck" authorize="yes" onclick="btn_Uncheck()"><i class="fa fa-pencil-square-o"></i>反审核项目</a></li>
+                <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改进度</a></li>
+                <li><a id="NF-Look" authorize="yes" onclick="btn_details()"><i class="fa fa-pencil-square-o"></i>查看进度</a></li>
+                <li><a id="NF-Check" authorize="yes" onclick="btn_Check()"><i class="fa fa-pencil-square-o"></i>审核进度</a></li>
+                <li><a id="NF-UnCheck" authorize="yes" onclick="btn_Uncheck()"><i class="fa fa-pencil-square-o"></i>反审核进度</a></li>
                 <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>作废项目</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>

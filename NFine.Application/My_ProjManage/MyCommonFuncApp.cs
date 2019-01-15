@@ -30,9 +30,9 @@ namespace NFine.Application.My_ProjManage
         /// <returns></returns>
         public DataTable GetProType()
         {
-            string strCMD = "SELECT mpbd.FCode,mpbd.FName FROM dbo.MY_ProBaseData AS mpbd "+
+            string strCMD = "SELECT mpbd.FCode,mpbd.FName FROM dbo.MY_ProBaseData AS mpbd " +
             " WHERE mpbd.FType = 'MY0001' AND mpbd.FCheckFlag = 1 ";
-            return icomm.GetQueryDataTable(strCMD,null);
+            return icomm.GetQueryDataTable(strCMD, null);
         }
 
         /// <summary>
@@ -63,6 +63,45 @@ namespace NFine.Application.My_ProjManage
             }
             return treeList.TreeSelectJson();
         }
+
+        /// <summary>
+        /// 获取年度信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetYear()
+        {
+            DataTable dbYear = new DataTable();
+            dbYear.Columns.Add("FCode");
+            dbYear.Columns.Add("FName");
+            int iNowYear = DateTime.Now.Year;
+            for (int itmpYear = 2017; itmpYear <= iNowYear; itmpYear++)
+            {
+                dbYear.Rows.Add(itmpYear,itmpYear.ToString()+"年");
+            }
+            return dbYear;
+        }
+
+        /// <summary>
+        /// 获取周次信息
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetWeek()
+        {
+            DataTable dbYear = new DataTable();
+            dbYear.Columns.Add("FCode");
+            dbYear.Columns.Add("FName");
+            for (int itmpYear = 1; itmpYear <= 53; itmpYear++)
+            {
+                dbYear.Rows.Add(itmpYear, itmpYear.ToString() + "周");
+            }
+            return dbYear;
+        }
+
+
+
+
+
+
 
 
 
