@@ -312,6 +312,9 @@
     <Content Include="Content\js\simditor\js\simditor.min.js" />
     <Content Include="Content\js\simditor\js\uploader.js" />
     <Content Include="Content\js\simditor\js\uploader.min.js" />
+    <Content Include="Content\js\timeaxis\css\component.css" />
+    <Content Include="Content\js\timeaxis\css\default.css" />
+    <Content Include="Content\js\timeaxis\js\modernizr.custom.js" />
     <Content Include="Content\js\validate\jquery.validate.min.js" />
     <Content Include="Content\js\wdtree\images\icons\add.png" />
     <Content Include="Content\js\wdtree\images\icons\addStep.gif" />
@@ -644,6 +647,9 @@
     <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Form.cshtml" />
     <Content Include="Areas\MyDataManage\Views\web.config" />
     <Content Include="Areas\MyDataManage\Views\MyDataMange\Index.cshtml" />
+    <Content Include="Areas\My_ProjManage\Views\MyProjProg\PersonProg.cshtml" />
+    <Content Include="Content\js\timeaxis\css\.DS_Store" />
+    <Content Include="Content\js\timeaxis\js\.DS_Store" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>
