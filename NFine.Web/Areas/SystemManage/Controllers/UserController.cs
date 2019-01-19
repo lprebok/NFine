@@ -61,10 +61,15 @@ namespace NFine.Web.Areas.SystemManage.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult ResetPwd()
+        {
+            return View();
+        }
         [HttpPost]
         [HandlerAjaxOnly]
-        [HandlerAuthorize]
-        [ValidateAntiForgeryToken]
+        //[HandlerAuthorize]
+        //[ValidateAntiForgeryToken]
         public ActionResult SubmitRevisePassword(string userPassword, string keyValue)
         {
             userLogOnApp.RevisePassword(userPassword, keyValue);

@@ -130,7 +130,7 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         }
 
         [HttpPost]
-        [HandlerAuthorize]
+        //[HandlerAuthorize]
         [HandlerAjaxOnly]
         public ActionResult BillIsChecked(string keyValue)
         {

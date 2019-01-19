@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    $(function () {
+        $("#F_Account").val("@NFine.Code.OperatorProvider.Provider.GetCurrent().UserCode");
+        $("#F_RealName").val("@NFine.Code.OperatorProvider.Provider.GetCurrent().UserName");
+    }
+    )
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        var postData = $("#form1").formSerialize();
+        postData["userPassword"] = $("#F_UserPassword").val();
+        postData["keyValue"] = "@NFine.Code.OperatorProvider.Provider.GetCurrent().UserId";
+        $.submitForm({
+            url: "/SystemManage/User/SubmitRevisePassword",
+            param: postData,
+            success: function () {
+                $.loading(false)
+            }
+        })
+    }
+</script>
+
+<form id="form1">
+    <div style="padding-top: 30px; margin-right: 40px;width:400px; ">
+        <table class="form">
+            <tr>
+                <th class="formTitle">账户</th>
+                <td class="formValue">
+                    <input id="F_Account" name="F_Account" readonly type="text" class="form-control" style="width:300px;" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">姓名</th>
+                <td class="formValue">
+                    <input id="F_RealName" name="F_RealName" readonly type="text" class="form-control" style="width:300px;" />
+                </td>
+            </tr>
+            <tr>
+                <th class="formTitle">密码</th>
+                <td class="formValue">
+                    <input id="F_UserPassword" name="F_UserPassword" type="password" class="form-control required" style="width:300px;" placeholder="请输入新密码" />
+                </td>
+            </tr>
+        </table>
+        <input id="btnOk" type="button" onclick="submitForm()" style="float:right;" value="提 交" />
+    </div>
+</form>
+
+
+

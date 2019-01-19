@@ -644,6 +644,7 @@
     <Content Include="Areas\My_ProjManage\Views\MyNeedCheckProj\Form.cshtml" />
     <Content Include="Areas\MyDataManage\Views\web.config" />
     <Content Include="Areas\MyDataManage\Views\MyDataMange\Index.cshtml" />
+    <Content Include="Areas\SystemManage\Views\User\ResetPwd.cshtml" />
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>

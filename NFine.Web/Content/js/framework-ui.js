@@ -20,6 +20,7 @@ $.loading = function (bool, text) {
         $loadingtext.html(text);
     } else {
         $loadingtext.html("数据加载中，请稍后…");
+        //$loadingpage.hide();
     }
     $loadingtext.css("left", (top.$('body').width() - $loadingtext.width()) / 2 - 50);
     $loadingtext.css("top", (top.$('body').height() - $loadingtext.height()) / 2);
@@ -292,6 +293,7 @@ $.BillIsChecked = function (options) {
                     vResult = data.message; 
                 } else {
                     $.modalAlert(data.message, data.state);
+                    //alert("Error!");
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {

@@ -55,7 +55,7 @@ namespace NFine.Web.Areas.MyDataManage.Controllers
                 tree.hasChildren = hasChildren;
                 treeList.Add(tree);
             }
-            string str = treeList.TreeViewJson2();
+            //string str = treeList.TreeViewJson2();
             return Content(treeList.TreeViewJson2());
         }
 
