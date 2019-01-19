@@ -21,6 +21,12 @@ namespace NFine.Web.Areas.My_ProjManage.Controllers
         {
             return View();
         }
+
+        public ActionResult PersonProg()
+        {
+            return View();
+        }
+
         public override ActionResult Form()
         {
             MyCommonFuncApp mc = new MyCommonFuncApp();
