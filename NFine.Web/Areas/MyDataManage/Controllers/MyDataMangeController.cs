@@ -59,6 +59,23 @@ namespace NFine.Web.Areas.MyDataManage.Controllers
             return Content(treeList.TreeViewJson2());
         }
 
+        [HttpGet]
+        [HandlerAjaxOnly]
+        public ActionResult GetGridJson(string itemId, string keyword)
+        {
+            var data = myDictApp.GetList(itemId, keyword);
+            return Content(data.ToJson());
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
