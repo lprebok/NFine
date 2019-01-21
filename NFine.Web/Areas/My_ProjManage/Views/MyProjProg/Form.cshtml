@@ -8,7 +8,7 @@
     var keyValue = $.request("keyValue");
     $(function () {
         initControl();
-        $("#FCode").val("@ViewBag.cuID");
+        $("#FCode").val("@ViewBag.cuID").trigger("change");
         if (!!keyValue) {
             //alert("Test");
             $.ajax({
